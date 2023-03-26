@@ -1,0 +1,10 @@
+ja:
+  defaults:
+    login: 'ログイン'
+    register: '登録'
+  users:
+    create:
+      success: 'ユーザー登録が成功しました'
+      fail: 'ユーザー登録に失敗しました'
+
+

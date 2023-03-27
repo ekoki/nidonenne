@@ -6,5 +6,9 @@ ja:
     create:
       success: 'ユーザー登録が成功しました'
       fail: 'ユーザー登録に失敗しました'
+  user_sessions:
+    create:
+      success: 'ログインしました'
+      fail: 'ログインに失敗しました'
 
 

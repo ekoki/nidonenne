@@ -10,5 +10,11 @@ ja:
     create:
       success: 'ログインしました'
       fail: 'ログインに失敗しました'
+  password_reset:
+    create:
+      success: 'パスワードリセット手順を送信しました'
+    update:
+      success: 'パスワードを変更しました'
+      fail: 'パスワードの変更に失敗しました'
 
 

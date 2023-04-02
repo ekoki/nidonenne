@@ -1,0 +1,26 @@
+<div class="h-screen w-screen flex justify-center items-center">
+  <div>
+    <div class="text-center">
+      <h2 class="text-3xl font-bold mb-3">パスワードリセット</h2>
+    </div>
+    <div>
+      <%= form_with model: @user, url: password_reset_path(@token), local: true do |f| %>
+        <div>
+          <%= f.label :email %><br>
+          <%= @user.email %>
+        </div>
+        <div>
+          <%= f.label :password, User.human_attribute_name(:password) %>
+          <%= f.password_field :password, class: 'w-full p-2 border border-indigo-600' %>
+        </div>
+        <div>
+          <%= f.label :password_confirmation, User.human_attribute_name(:password_confirmation) %>
+          <%= f.password_field :password_confirmation, class: 'w-full p-2 border border-indigo-600' %>
+        </div>
+        <div>
+          <%= f.submit t('defaults.register'), class: 'mt-1.5 btn btn-primary py-1 px-8' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<div>

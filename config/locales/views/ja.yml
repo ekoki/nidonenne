@@ -2,6 +2,7 @@ ja:
   defaults:
     login: 'ログイン'
     register: '登録'
+    password_reset: 'パスワードリセット'
   users:
     create:
       success: 'ユーザー登録が成功しました'
@@ -10,11 +11,14 @@ ja:
     create:
       success: 'ログインしました'
       fail: 'ログインに失敗しました'
-  password_reset:
+  password_resets:
     create:
       success: 'パスワードリセット手順を送信しました'
     update:
       success: 'パスワードを変更しました'
       fail: 'パスワードの変更に失敗しました'
+    new:
+      title: 'パスワードリセット申請'
+      submit: '送信'
 
 

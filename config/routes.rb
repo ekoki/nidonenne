@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'schedules/index'
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   root 'static_pages#top'
   resources :users, only: %i[new create]
@@ -6,4 +7,5 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   resources :password_resets, only: %i[new create edit update]
+  get 'dashboards/index'
 end

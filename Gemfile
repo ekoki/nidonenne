@@ -61,6 +61,12 @@ gem 'sorcery'
 # 環境ごとに定数を管理
 gem 'config'
 
+# カレンダー
+gem "simple_calendar", "~> 2.4"
+
+# 非同期処理
+gem 'sidekiq'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

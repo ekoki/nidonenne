@@ -3,6 +3,7 @@ ja:
     login: 'ログイン'
     register: '登録'
     password_reset: 'パスワードリセット'
+    setting: '設定'
   users:
     create:
       success: 'ユーザー登録が成功しました'

@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
   resources :password_resets, only: %i[new create edit update]
   get 'dashboards/index'
+  resources :notification_settings, only: %i[new create]
 end

@@ -20,5 +20,8 @@ ja:
     new:
       title: 'パスワードリセット申請'
       submit: '送信'
+  simple_calendar:
+    previous: '<<'
+    next: '>>'
 
 

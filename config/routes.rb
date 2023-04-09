@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'questions/new'
   get 'schedules/index'
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   root 'static_pages#top'
@@ -8,4 +9,5 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
   resources :password_resets, only: %i[new create edit update]
   resources :notification_settings, only: %i[new create]
+  resources :questions, only: %i[new create]
 end

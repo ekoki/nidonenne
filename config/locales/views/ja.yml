@@ -21,5 +21,9 @@ ja:
     new:
       title: 'パスワードリセット申請'
       submit: '送信'
+  notification_settings:
+    create:
+      success: '通知設定が完了しました'
+      fail: '通知設定に失敗しました'
 
 

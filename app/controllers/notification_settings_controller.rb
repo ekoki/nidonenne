@@ -1,14 +1,14 @@
 class NotificationSettingsController < ApplicationController
   def new
-    @notification_settings = NotificationSetting.new
+    @notification_setting = NotificationSetting.new
   end
 
   def create
-    @notification_setting =  NotificationSetting.new(user_params)
-    if notification_setting.save
-      redirect_to dashboards_path, notice: t('.success')
+    @notification_setting = current_user.notification_settings.new(notification_setting_params)
+    if @notification_setting.save
+      redirect_to schedules_index_path, notice: t('.success')
     else
-      flash.now[:alert] = t('.fail')
+      flash.now[:fail] = t('.fail')
       render :new
     end
   end
@@ -16,8 +16,8 @@ class NotificationSettingsController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  def notification_setting_params
+    params.require(:notification_setting).permit(:send_daily, :send_time)
   end
 
 end

@@ -1,0 +1,28 @@
+<div class="h-screen w-screen flex justify-center items-center">
+  <div class="w-1/3 h-2/3 shadow-lg rounded-3xl p-8 bg-cyan-200 border border-black">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold">通知設定</h2>
+    </div>
+    <div class="text-2xl">
+      <%= form_with model: @notification_setting, url: notification_settings_path, local: true do |f| %>
+        <div class="mt-10">
+          <p>ユーザー名:</p>
+          <div class="border border-indigo-600 rounded-lg p-2">
+            <%= current_user.name %>
+          </div>
+        </div>
+        <div class="mt-5">
+          <%= f.label :send_daily, "#{NotificationSetting.human_attribute_name(:send_daily)}:" %>
+          <%= f.check_box :send_daily %>
+        </div>
+        <div class="mt-5">
+          <%= f.label :send_time, NotificationSetting.human_attribute_name(:send_time) %>
+          <%= f.time_select :send_time, class: 'w-full p-2 border border-indigo-600' %>
+        </div>
+        <div class="mt-5">
+          <%= f.submit t('defaults.setting'), class: 'mt-1.5 btn btn-primary py-1 px-8' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

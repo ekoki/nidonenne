@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
     questions = question_params
     @question = Question.new
     if @question.question_save(questions, current_user)
-      redirect_to root_path, notice: t('.success')
+      redirect_to schedules_index_path, notice: t('.success')
     else
       flash.now[:alert] = t('.fail')
       render :new

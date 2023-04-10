@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_08_065156) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_09_082223) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_065156) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notification_settings_on_user_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "question", null: false
+    t.text "answer", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -49,5 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_065156) do
   end
 
   add_foreign_key "notification_settings", "users"
+  add_foreign_key "questions", "users"
   add_foreign_key "schedules", "users"
 end

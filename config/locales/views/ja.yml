@@ -25,5 +25,10 @@ ja:
     create:
       success: '通知設定が完了しました'
       fail: '通知設定に失敗しました'
+  questions:
+    create:
+      success: '問題の登録が完了しました'
+      fail: '問題の登録に失敗しました'
+
 
 

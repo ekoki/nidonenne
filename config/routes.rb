@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'answers/show'
   get 'questions/new'
   get 'schedules/index'
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
@@ -11,4 +10,5 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
   resources :notification_settings, only: %i[new create]
   resources :questions, only: %i[new create]
+  resources :answer_forms, only: %i[show create]
 end

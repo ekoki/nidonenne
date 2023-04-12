@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :user
+  belongs_to :schedule
 
   validates :question, presence: true, length: { maximum: 30 }
   validates :answer, presence: true, length: { maximum: 30 }

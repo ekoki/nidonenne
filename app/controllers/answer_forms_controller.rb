@@ -2,6 +2,11 @@ class AnswerFormsController < ApplicationController
   def show
     @questions = Question.where(user_id: current_user.id)
   end
+
+  def create
+    @answer_forms = Question.new(answer_forms_params)
+  end
+  
 end
 
 

@@ -4,6 +4,7 @@ ja:
     register: '登録'
     password_reset: 'パスワードリセット'
     setting: '設定'
+    answer: '解答'
   users:
     create:
       success: 'ユーザー登録が成功しました'

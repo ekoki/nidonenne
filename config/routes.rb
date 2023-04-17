@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
   resources :notification_settings, only: %i[new create]
   resources :questions, only: %i[new create]
+  resources :answer_forms, only: %i[create]
 end

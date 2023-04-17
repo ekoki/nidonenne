@@ -5,8 +5,5 @@ class AnswerForm
 
   validates :answer, presence: true
 
-  def correct?
-    question.answer == answer
-  end
-  
+
 end

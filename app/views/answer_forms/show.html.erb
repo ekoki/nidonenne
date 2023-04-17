@@ -4,7 +4,7 @@
       <h2 class="text-3xl font-bold">解答ページ</h2>
     </div>
     <div>
-      <%= form_with model: @answer_forms, local: true do |f| %>
+      <%= form_with url: answer_forms_path, local: true do |f| %>
         <% @questions.each_with_index do |question, i| %>
           <div class="flex">
             <%= "問題#{i+1}: #{question.question}" %>
@@ -12,7 +12,7 @@
           <div>
             <%= f.text_field :answer, class: 'w-full p-2 border border-indigo-600' %>
           </div>
-      <% end %>  
+      <% end %>
         <div>
           <%= f.submit t('defaults.answer'), class: 'mt-1.5 btn btn-primary py-1 px-8' %>
         </div>

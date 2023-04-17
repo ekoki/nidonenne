@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    binding.break
     if @user.save
       redirect_to root_path, notice: t('.success')
     else
@@ -20,6 +19,7 @@ class UsersController < ApplicationController
     @questions = @user.questions
   end
 
+  
 
   private
 

@@ -5,8 +5,9 @@ class AnswerFormsController < ApplicationController
     @correct_answers = Question.where(user_id: current_user.id)
     @user_answers = user_answers
     if correct? == 3
-      redirect_to schedules_index_path
+      redirect_to schedules_index_path, notice: t('.success')
     else
+      flash.now[:alert] = t('.fail')
       @user = User.find(current_user.id)
       @question = Question.new
       @questions = @user.questions

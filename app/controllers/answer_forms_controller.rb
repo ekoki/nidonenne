@@ -34,9 +34,3 @@ class AnswerFormsController < ApplicationController
   end
   
 end
-
-
-
-
-
-

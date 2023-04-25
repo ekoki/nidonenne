@@ -30,6 +30,10 @@ ja:
     create:
       success: '問題の登録が完了しました'
       fail: '問題の登録に失敗しました'
+  answer_forms:
+    create:
+      success: '正解しました！'
+      fail: '間違えています'
 
 
 

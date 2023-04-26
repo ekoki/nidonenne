@@ -2,15 +2,19 @@ class AnswerFormsController < ApplicationController
 
   def create
     @user = User.find(current_user.id)
-    @correct_answers = Question.where(user_id: current_user.id)
-    @user_answers = user_answers
-    if correct? == 3
+    correct_answers = Question.where(user_id: current_user.id)
+    @answer_forms = AnswerForm.new(user_answers)
+    user_answers = user_answers
+    @question = Question.new
+    @questions = @user.questions
+    unless @answer_forms.valid?
+      render 'users/show'
+      return
+    end
+    if @answer_forms.correct?(user_answers, correct_answers) == 3
       redirect_to schedules_index_path, notice: t('.success')
     else
       flash.now[:alert] = t('.fail')
-      @user = User.find(current_user.id)
-      @question = Question.new
-      @questions = @user.questions
       render 'users/show'
     end
   end
@@ -18,19 +22,7 @@ class AnswerFormsController < ApplicationController
   private
 
   def user_answers
-    params.require(:questions).permit("0": [:answer], "1": [:answer], "2": [:answer] )
+    params.require(:answer_form).permit("0": [:answer], "1": [:answer], "2": [:answer] )
   end
 
-  def correct?
-    correct_count = 0
-    @correct_answers.each do |correct_answer|
-      @user_answers.each do |user_answer|
-        if correct_answer.answer == user_answer[1][:answer]
-          correct_count += 1
-        end
-      end
-    end
-    return correct_count
-  end
-  
 end

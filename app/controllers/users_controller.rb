@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @question = Question.new
     @questions = @user.questions
+    @answer_forms = AnswerForm.new
   end
 
   

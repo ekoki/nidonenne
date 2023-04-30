@@ -11,3 +11,7 @@ ja:
       notification_setting:
         send_daily: '毎日同じ時刻に設定'
         send_time: '起床時間'
+      answer_form:
+        answer0: '解答1'
+        answer1: '解答2'
+        answer2: '解答3'

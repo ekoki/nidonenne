@@ -25,18 +25,4 @@ class AnswerFormsController < ApplicationController
     params.require(:answer_form).permit(:answer0, :answer1, :answer2)
   end
 
-
-  # def user_answers
-  #   answers = params[:answer_form]
-  #   user_answers = {}
-  #   answers.each do |answer|
-  #     binding.break
-  #     answer[1].each do |key, value|
-  #       user_answers[key] = value
-  #     end
-  #     user_answers
-      
-  #   end
-    
-  # end
 end

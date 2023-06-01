@@ -2,6 +2,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :notification_settings
   has_many :questions
+  has_many :schedules
 
   validates :name, presence: true, length: { maximum: 15 }
   validates :email, uniqueness: true, presence: true

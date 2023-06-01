@@ -2,3 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 @import "simple_calendar";
+
+
+/*カレンダー*/
+.simple-calendar {
+  .table{
+    outline: 1px solid #ddd;
+    width: 50%;
+  }
+
+
+}
+
+
+
+

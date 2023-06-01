@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   def index
+    @events = Schedule.all
   end
 
   def create

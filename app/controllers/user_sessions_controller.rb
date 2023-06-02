@@ -12,4 +12,9 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  def destroy
+    logout
+    redirect_to root_path, notice: t('.success'), status: :see_other
+  end
+
 end

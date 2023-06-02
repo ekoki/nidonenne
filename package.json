@@ -7,7 +7,9 @@
     "watch": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets --watch"
   },
   "dependencies": {
-    "daisyui": "^2.51.5"
+    "@hotwired/turbo-rails": "^7.3.0",
+    "daisyui": "^2.51.5",
+    "jquery": "3.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",

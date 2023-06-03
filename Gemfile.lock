@@ -89,6 +89,10 @@ GEM
     debug (1.7.1)
     deep_merge (1.2.2)
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     dry-configurable (1.0.1)
       dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
@@ -150,6 +154,7 @@ GEM
       letter_opener (~> 1.7)
       railties (>= 5.2)
       rexml
+    line-bot-api (1.28.0)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -321,10 +326,12 @@ DEPENDENCIES
   config
   cssbundling-rails
   debug
+  dotenv-rails
   importmap-rails (~> 1.1)
   jbuilder
   jsbundling-rails
   letter_opener_web
+  line-bot-api
   pg
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)

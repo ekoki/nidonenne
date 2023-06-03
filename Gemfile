@@ -67,6 +67,11 @@ gem "simple_calendar", "~> 2.4"
 # 非同期処理
 gem 'sidekiq'
 
+# LINE Messaging API
+gem 'line-bot-api'
+
+# 環境変数の設定
+gem 'dotenv-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :notification_settings, only: %i[new create]
   resources :questions, only: %i[new create]
   resources :answer_forms, only: %i[create]
-  post 'callback', to: 'line_bot#callback'
+  post 'webhook', to: 'line_users#webhook'
+  post 'line_users', to: 'line_users#create'
 end

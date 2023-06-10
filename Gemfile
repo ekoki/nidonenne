@@ -69,6 +69,7 @@ gem 'sidekiq'
 
 # LINE Messaging API
 gem 'line-bot-api'
+gem 'typhoeus'
 
 # 環境変数の設定
 gem 'dotenv-rails'

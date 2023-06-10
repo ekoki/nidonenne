@@ -2,11 +2,13 @@ class LineUsersController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
 
   def create
+    # webhookアクションのCSRFトークン認証を無効
+    protect_from_forgery :except => [:webhook]
+    webhook
   end
 
 
-  # webhookアクションのCSRFトークン認証を無効
-  protect_from_forgery :except => [:webhook]
+  private
 
   def client
     @client ||= Line::Bot::Client.new { |config|

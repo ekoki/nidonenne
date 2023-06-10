@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   resources :questions, only: %i[new create]
   resources :answer_forms, only: %i[create]
   post 'webhook', to: 'line_users#webhook'
-  post 'line_users', to: 'line_users#create'
+  get 'line_users/new', to: 'line_users#new'
+  get 'line_login_api/login', to: 'line_login_api#login'
+  get 'line_login_api/callback', to: 'line_login_api#callback'
 end

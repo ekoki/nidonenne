@@ -5,23 +5,25 @@ class LineLoginApiController < ApplicationController
   require 'securerandom'
 
   def login
+
     # CSRF対策用の固有な英数字の文字列
     # ログインセッションごとにWebアプリでランダムに生成する
     session[:state] = SecureRandom.urlsafe_base64
-
+    
     # ユーザーに認証と認可を要求する
     # https://developers.line.biz/ja/docs/line-login/integrate-line-login/#making-an-authorization-request
 
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
     client_id =  ENV["LINE_CHANNEL_ID"]
-    redirect_uri =  CGI.escape('https://8415-126-227-130-93.ngrok-free.app/line_login_api/callback')
+    redirect_uri =  CGI.escape('https://f23c-126-227-130-93.ngrok-free.app/line_login_api/callback')
     state = session[:state]
     scope = 'profile%20openid' #ユーザーに付与を依頼する権限
 
     authorization_url = "#{base_authorization_url}?response_type=#{response_type}&client_id=#{client_id}&redirect_uri=#{redirect_uri}&state=#{state}&scope=#{scope}"
-
+    
     redirect_to authorization_url, allow_other_host: true
+
   end
 
   def callback
@@ -30,11 +32,11 @@ class LineLoginApiController < ApplicationController
     if params[:state] == session[:state]
 
       line_user_id = get_line_user_id(params[:code])
-      user = User.find_or_initialize_by(line_user_id: line_user_id)
+      line_user = current_user.line_users.find_or_initialize_by(line_user_id: line_user_id)
 
-      if user.save
+      if line_user.save
         session[:user_id] = user.id
-        redirect_to schedules_index_path, notice: 'ログインしました'
+        redirect_to after_login_path, notice: 'ログインしました'
       else
         redirect_to root_path, notice: 'ログインに失敗しました'
       end

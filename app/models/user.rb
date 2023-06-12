@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :notification_settings
   has_many :questions
   has_many :schedules
+  has_many :line_users
 
   validates :name, presence: true, length: { maximum: 15 }
   validates :email, uniqueness: true, presence: true

@@ -69,4 +69,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.default_url_options = Settings.default_url_options.to_h
+  config.hosts << ".ngrok-free.app"
+  config.web_console.permissions = '126.227.130.93'
 end

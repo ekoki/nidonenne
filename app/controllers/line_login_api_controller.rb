@@ -21,13 +21,13 @@ class LineLoginApiController < ApplicationController
     scope = 'profile%20openid' #ユーザーに付与を依頼する権限
 
     authorization_url = "#{base_authorization_url}?response_type=#{response_type}&client_id=#{client_id}&redirect_uri=#{redirect_uri}&state=#{state}&scope=#{scope}"
-    
+
     redirect_to authorization_url, allow_other_host: true
 
   end
 
   def callback
-
+    
     # CSRF対策のトークンが一致する場合のみ、ログイン処理を続ける
     if params[:state] == session[:state]
 
@@ -35,7 +35,7 @@ class LineLoginApiController < ApplicationController
       line_user = current_user.line_users.find_or_initialize_by(line_user_id: line_user_id)
 
       if line_user.save
-        session[:user_id] = user.id
+        session[:user_id] = line_user.user.id
         redirect_to after_login_path, notice: 'ログインしました'
       else
         redirect_to root_path, notice: 'ログインに失敗しました'

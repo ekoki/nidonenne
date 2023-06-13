@@ -36,7 +36,7 @@ class LineLoginApiController < ApplicationController
 
       if line_user.save
         session[:user_id] = line_user.user.id
-        redirect_to after_login_path, notice: 'ログインしました'
+        redirect_to schedules_index_path, notice: 'ログインしました'
       else
         redirect_to root_path, notice: 'ログインに失敗しました'
       end

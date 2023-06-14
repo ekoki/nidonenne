@@ -1,14 +1,15 @@
 <div class="h-screen w-screen flex justify-center items-center">
   <div class="text-center">
-    <div>
-      <%= month_calendar evens: @events do |date, events| %>
-        <%= date.day %>
-        <% events.each do |event| %>
+    <%= month_calendar evens: @events do |date, events| %>
+      <%= date.day %>
+      <% events.each do |event| %>
         <div>
           <%= event.name %>
         </div>
-        <% end %>
       <% end %>
+    <% end %>
+    <div class="text-left">
+      <%= link_to '解答画面へ', new_answer_form_path %>
     </div>
   </div>
 </div>

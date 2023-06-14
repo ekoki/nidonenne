@@ -1,5 +1,12 @@
 class AnswerFormsController < ApplicationController
 
+  def new
+    # whereメソッドを実施することにより、配列で、qustionのレコードが格納される。
+    @questions = Question.where(user_id: current_user.id)
+    @question = Question.new
+    @answer_forms = AnswerForm.new
+  end
+
   def create
     @user = User.find(current_user.id)
     @correct_answers = Question.where(user_id: current_user.id)
@@ -8,7 +15,7 @@ class AnswerFormsController < ApplicationController
     @question = Question.new
     @questions = @user.questions
     unless @answer_forms.valid?
-      render 'users/show'
+      render 'answer_forms/new'
       return
     end
     if @answer_forms.correct?(@user_answers, @correct_answers) == 3

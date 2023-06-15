@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
   resources :notification_settings, only: %i[new create]
   resources :questions, only: %i[new create]
-  resources :answer_forms, only: %i[create]
+  resources :answer_forms, only: %i[create new]
   post 'webhook', to: 'line_users#webhook'
   get 'line_users/new', to: 'line_users#new'
   get 'line_login_api/login', to: 'line_login_api#login'

@@ -16,18 +16,18 @@ class LineLoginApiController < ApplicationController
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
     client_id =  ENV["LINE_CHANNEL_ID"]
-    redirect_uri =  CGI.escape('https://f23c-126-227-130-93.ngrok-free.app/line_login_api/callback')
+    redirect_uri =  CGI.escape('https://glacial-dusk-80037.herokuapp.com/line_login_api/callback')
     state = session[:state]
     scope = 'profile%20openid' #ユーザーに付与を依頼する権限
 
     authorization_url = "#{base_authorization_url}?response_type=#{response_type}&client_id=#{client_id}&redirect_uri=#{redirect_uri}&state=#{state}&scope=#{scope}"
-    
+
     redirect_to authorization_url, allow_other_host: true
 
   end
 
   def callback
-
+    
     # CSRF対策のトークンが一致する場合のみ、ログイン処理を続ける
     if params[:state] == session[:state]
 
@@ -35,8 +35,8 @@ class LineLoginApiController < ApplicationController
       line_user = current_user.line_users.find_or_initialize_by(line_user_id: line_user_id)
 
       if line_user.save
-        session[:user_id] = user.id
-        redirect_to after_login_path, notice: 'ログインしました'
+        session[:user_id] = line_user.user.id
+        redirect_to schedules_index_path, notice: 'ログインしました'
       else
         redirect_to root_path, notice: 'ログインに失敗しました'
       end

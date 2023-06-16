@@ -8,8 +8,7 @@ class NotificationSettingsController < ApplicationController
     if @notification_setting.save
       send_time = @notification_setting.send_time
       # 下記コードにより、send_time時間になるとSendLineMessageJobが実行される。
-      # SendLineMessageJob.set(wait_until: send_time).perform_later(@notification_setting.id)
-      SendLineMessageJob.perform_now(@notification_setting.id)
+      SendLineMessageJob.set(wait_until: send_time).perform_later(@notification_setting.id)
       redirect_to new_question_path, notice: t('.success')
     else
       flash.now[:fail] = t('.fail')

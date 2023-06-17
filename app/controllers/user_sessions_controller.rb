@@ -1,11 +1,14 @@
 class UserSessionsController < ApplicationController
+  skip_before_action :require_login, except: [:destroy]
 
   def new;end
 
   def create
     @user = login(params[:email], params[:password])
     if @user
-      redirect_back_or_to schedules_index_path, notice: t('.success')
+      # ログインに成功したとき、もともと訪れようとしていたURLか該当がない場合には、デフォルトのURLにリダイレクト
+      redirect_to session[:forwarding_url] || schedules_index_path, notice: t('.success')
+      session.delete(:forwarding_url)
     else
       flash.now[:alert] = t('.fail')
       render :new

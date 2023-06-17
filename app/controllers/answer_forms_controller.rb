@@ -4,7 +4,7 @@ class AnswerFormsController < ApplicationController
     # whereメソッドを実施することにより、配列で、qustionのレコードが格納される。
     @questions = Question.where(user_id: params[:user_id])
     @question = Question.new
-    @answer_forms = AnswerForm.new
+    @answer_form = AnswerForm.new
   end
 
   def create

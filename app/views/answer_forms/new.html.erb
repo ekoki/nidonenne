@@ -5,7 +5,7 @@
     </div>
     <div>
      <% if !@questions.empty? %>
-        <%= form_with model: @answer_forms, local: true do |f| %>
+        <%= form_with model: [current_user, @answer_form], local: true do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
           <% @questions.each_with_index do |question, i| %>
             <div class="flex flex-col mb-4">

@@ -5,6 +5,7 @@ class AnswerFormsController < ApplicationController
     @questions = Question.where(user_id: params[:user_id])
     @question = Question.new
     @answer_form = AnswerForm.new
+    @user = User.find_by(id: params[:user_id])
   end
 
   def create

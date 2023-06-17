@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  # 下記がトークンが生成され、usersテーブルに保存される。https://qiita.com/mitz/items/9dbf5017a48f5961a596
+  has_secure_token :auth_token
   has_many :notification_settings
   has_many :questions
   has_many :schedules
@@ -12,7 +14,20 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :reset_password_token, uniqueness: true, allow_nil: true
 
+  privete
+  
   def own?(object)
     id == object.user_id
   end
+
+  def ensure_auth_token
+    if auth_token_created_at < 24.hours.ago
+      regenerate_auth_token
+      self.auth_token_created_at = Time.current
+      save!
+    end
+  end
+  
+
+
 end

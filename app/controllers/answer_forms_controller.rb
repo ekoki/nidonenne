@@ -1,4 +1,5 @@
 class AnswerFormsController < ApplicationController
+  before_action :login_with_token, only: [:new]
 
   def new
     # whereメソッドを実施することにより、配列で、qustionのレコードが格納される。
@@ -31,6 +32,17 @@ class AnswerFormsController < ApplicationController
 
   def user_answer_params
     params.require(:answer_form).permit(:answer0, :answer1, :answer2)
+  end
+
+  def login_with_token
+    unless logged_in?
+      token = params[:token]
+      user = User.find_by(auth_token: token)
+      if user.present?
+        user.ensure_auth_token
+        auto_login(user)
+      end
+    end
   end
 
 end

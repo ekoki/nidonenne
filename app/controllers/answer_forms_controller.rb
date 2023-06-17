@@ -2,7 +2,7 @@ class AnswerFormsController < ApplicationController
 
   def new
     # whereメソッドを実施することにより、配列で、qustionのレコードが格納される。
-    @questions = Question.where(user_id: current_user.id)
+    @questions = Question.where(user_id: params[:user_id])
     @question = Question.new
     @answer_forms = AnswerForm.new
   end

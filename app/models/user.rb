@@ -27,6 +27,10 @@ class User < ApplicationRecord
       save!
     end
   end
+
+  def regenerate_auth_token
+    self.auth_token = SecureRandom.urlsafe_base64
+  end
   
 
 

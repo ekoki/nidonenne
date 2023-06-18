@@ -3,18 +3,18 @@ class SendLineMessageJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    send_push_message_by_notification_setting_id(args[0])
+    send_push_message_by_notification_setting_id(args[0], args[1])
   end
 
   private
 
-  def send_push_message_by_notification_setting_id(notification_setting_id)
+  def send_push_message_by_notification_setting_id(notification_setting_id, current_user_id)
     notification = NotificationSetting.find_by(id: notification_setting_id)
     return unless notification # handle not found case
 
     message = {
       type: 'text',
-      text: send_message(notification)
+      text: send_message(notification, current_user_id)
     }
     
     notification.user.line_users.each do |line_user|
@@ -33,9 +33,10 @@ class SendLineMessageJob < ApplicationJob
     end
   end
 
-  def send_message(notification)
+  def send_message(notification, current_user)
     message = "おはようございます！\n本日の問題を送信します。\n"
-    message << Rails.application.routes.url_helpers.new_answer_form_url(host: 'glacial-dusk-80037.herokuapp.com')
+    user = User.find_by(id: current_user)
+    message << Rails.application.routes.url_helpers.new_user_answer_form_url(user, token: user.auth_token, host: 'glacial-dusk-80037.herokuapp.com')
 
     message
   end

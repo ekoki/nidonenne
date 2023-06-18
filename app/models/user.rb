@@ -14,7 +14,6 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :reset_password_token, uniqueness: true, allow_nil: true
 
-  private
   
   def own?(object)
     id == object.user_id
@@ -27,6 +26,8 @@ class User < ApplicationRecord
       save!
     end
   end
+
+  private
 
   def regenerate_auth_token
     self.auth_token = SecureRandom.urlsafe_base64

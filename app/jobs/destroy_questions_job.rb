@@ -1,4 +1,4 @@
-class DeleteQuestionsJob < ApplicationJob
+class DestroyQuestionsJob < ApplicationJob
   queue_as :default
 
   def perform(*args)

@@ -1,6 +1,6 @@
 class SchedulesController < ApplicationController
   def index
-    @events = ['たこ焼き', 'ピーマン', 'さつまいも']
+    
   end
 
   def create

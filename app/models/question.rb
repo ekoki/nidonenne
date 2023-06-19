@@ -10,7 +10,7 @@ class Question < ApplicationRecord
     question_forms.each do |question_form|
       #questionは["0", #<ActionController::Parameters {"question"=>"dog", "answer"=>"犬"} permitted: true>]になる
       question = current_user.questions.create!(question_form[1])
-      set_time = question.created_at + 1.minute
+      set_time = question.created_at + 12.hours
       DestroyQuestionsJob.set(wait_until: set_time).perform_later(question.id)
     end
   end

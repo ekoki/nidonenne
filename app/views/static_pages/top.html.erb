@@ -8,9 +8,22 @@
             </div>
         </div>
     </div>
-    <div class="flex justify-center items-center bg-gray-100">
-        <div class="bg-white px-12 py-12 rounded-3xl border-2">
-            
+    <div class="flex flex-col justify-center pt-20">
+        <div class="flex justify-center items-center pb-20">
+            <%= image_tag 'notification_setting.png', class: 'w-2/6 h-2/6' %>
+            <p class="ml-5">通知を行いたい時間を設定します。</p>
+        </div>
+        <div class="flex justify-center items-center pb-20">
+            <p class="mr-5">問題の設定を行います。</p>
+            <%= image_tag 'questions.png', class: 'w-2/6 h-2/6' %>
+        </div>
+        <div class="flex justify-center items-center pb-20">
+            <%= image_tag 'answers.png', class: 'w-2/6 h-2/6' %>
+            <p class="ml-5">設定した問題の解答を行います。</p>
+        </div>
+        <div class="flex justify-center items-center pb-20">
+            <p class="mr-5 w-1/4 h-1/4">全ての問題に正解するとカレンダーに反映されます。なお、当該反映は通知時間の10分以内に全ての問題に答えられないと反映されません。</p>
+            <%= image_tag 'calendar.png', class: 'w-2/6 h-2/6' %>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 class SchedulesController < ApplicationController
   def index
-    @events = Schedule.all
+    @got_ups = GotUp.where(user_id: current_user.id)
   end
 
   def create

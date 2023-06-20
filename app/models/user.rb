@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :questions
   has_many :schedules
   has_many :line_users
+  has_many :got_ups
 
   validates :name, presence: true, length: { maximum: 15 }
   validates :email, uniqueness: true, presence: true

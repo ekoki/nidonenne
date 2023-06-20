@@ -1,15 +1,21 @@
-<div class="h-screen w-screen flex justify-center items-center">
-  <div class="text-center">
-    <%= month_calendar evens: @events do |date, events| %>
-      <%= date.day %>
-      <% events.each do |event| %>
-        <div>
-          <%= event.name %>
+<div class="h-screen w-screen flex flex-col justify-center container mx-auto">
+  <div class="w-full">
+      <%= month_calendar(events: @got_ups) do |date, got_ups| %>
+        <div class="border rounded h-20 w-28">
+          <div class="font-bold w-full text-left">
+            <%= date.day %>
+          </div>
+          <% got_ups.each do |got_up| %>
+            <div class="font-thin">
+              <% datetime = got_up.start_time %>
+              <% time = datetime.strftime("%H:%M") %>
+              <%= "#{time}早起きしました！" %>
+            </div>
+          <% end %>
         </div>
       <% end %>
-    <% end %>
-    <div class="text-left">
-      <%= link_to '解答画面へ', new_user_answer_form_path(current_user) %>
+    <div class="w-full text-center">
+      <%= link_to '解答画面へ', new_user_answer_form_path(current_user), class: 'w-full' %>
     </div>
   </div>
 </div>

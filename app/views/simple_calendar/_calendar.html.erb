@@ -6,15 +6,15 @@
   </div>
 
   <table class="table table-striped">
-    <thead>
-      <tr>
+    <thead class="bg-gray-400">
+      <tr class="bg-gray-400">
         <% date_range.slice(0, 7).each do |day| %>
           <th><%= t('date.abbr_day_names')[day.wday] %></th>
         <% end %>
       </tr>
     </thead>
 
-    <tbody>
+    <tbody class="bg-gray-400">
       <% date_range.each_slice(7) do |week| %>
         <%= content_tag :tr, class: calendar.tr_classes_for(week) do %>
           <% week.each do |day| %>

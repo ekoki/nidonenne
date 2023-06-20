@@ -7,7 +7,7 @@
      <% if !@questions.empty? %>
         <%= form_with model: [@user, @answer_form], local: true do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
-          <% @questions.each_with_index do |question, i| %>
+          <% @questions.first(3).each_with_index do |question, i| %>
             <div class="flex flex-col mb-4">
               <%= f.label "解答#{i+1}", class: 'mb-2 font-bold text-lg text-gray-700' %>
               <%= question.question %>

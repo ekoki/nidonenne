@@ -23,6 +23,8 @@ class AnswerFormsController < ApplicationController
       return
     end
     if @answer_forms.correct?(@user_answers, @correct_answers) == 3
+      @got_up = GotUp.new
+      @got_up.save(@user)
       redirect_to schedules_index_path, notice: t('.success')
     else
       flash.now[:alert] = t('.fail')

@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_17_120418) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_20_044137) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "got_ups", force: :cascade do |t|
+    t.boolean "got_up", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.datetime "start_time"
+    t.index ["user_id"], name: "index_got_ups_on_user_id"
+  end
 
   create_table "line_users", force: :cascade do |t|
     t.string "line_user_id", null: false
@@ -42,11 +51,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_120418) do
 
   create_table "schedules", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "wake_up_time", null: false
-    t.datetime "bedtime", null: false
-    t.boolean "got_up"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.time "send_daily_time"
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
@@ -68,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_120418) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "got_ups", "users"
   add_foreign_key "line_users", "users"
   add_foreign_key "notification_settings", "users"
   add_foreign_key "questions", "users"

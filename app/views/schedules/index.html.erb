@@ -1,5 +1,5 @@
-<div class="h-screen w-screen flex flex-col justify-center container mx-auto">
-  <div class="w-full">
+<div class="flex flex-col pb-36 bg-gray-100">
+  <div class="flex-grow mt-28">
       <%= month_calendar(events: @got_ups) do |date, got_ups| %>
         <div class="border rounded h-20 w-28">
           <div class="font-bold w-full text-left">
@@ -9,13 +9,13 @@
             <div class="font-thin">
               <% datetime = got_up.start_time %>
               <% time = datetime.strftime("%H:%M") %>
-              <%= "#{time}早起きしました！" %>
+              <div class="flex items-center">
+                <i class="fa-solid fa-thumbs-up mr-1"></i>
+                <p class="font-bold"><%= "#{time}" %></p>
+              </div>
             </div>
           <% end %>
         </div>
       <% end %>
-    <div class="w-full text-center">
-      <%= link_to '解答画面へ', new_user_answer_form_path(current_user), class: 'w-full' %>
-    </div>
   </div>
 </div>

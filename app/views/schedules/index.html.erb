@@ -1,10 +1,17 @@
 <div class="h-screen w-screen flex flex-col justify-center container mx-auto">
   <div class="w-full">
-      <%= month_calendar do |date| %>
+      <%= month_calendar(events: @got_ups) do |date, got_ups| %>
         <div class="border rounded h-20 w-28">
           <div class="font-bold w-full text-left">
             <%= date.day %>
           </div>
+          <% got_ups.each do |got_up| %>
+            <div class="font-thin">
+              <% datetime = got_up.start_time %>
+              <% time = datetime.strftime("%H:%M") %>
+              <%= "#{time}早起きしました！" %>
+            </div>
+          <% end %>
         </div>
       <% end %>
     <div class="w-full text-center">

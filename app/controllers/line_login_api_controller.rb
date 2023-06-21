@@ -16,7 +16,7 @@ class LineLoginApiController < ApplicationController
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
     client_id =  ENV["LINE_CHANNEL_ID"]
-    redirect_uri =  CGI.escape('https://glacial-dusk-80037.herokuapp.com/line_login_api/callback')
+    redirect_uri =  CGI.escape('https://glacial-dusk-80037-afde0a3307df.herokuapp.com/line_login_api/callback')
     state = session[:state]
     scope = 'profile%20openid' #ユーザーに付与を依頼する権限
 

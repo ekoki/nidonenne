@@ -13,7 +13,7 @@ class NotificationSettingsController < ApplicationController
       redirect_to new_question_path, notice: t('.success')
     else
       flash.now[:fail] = t('.fail')
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

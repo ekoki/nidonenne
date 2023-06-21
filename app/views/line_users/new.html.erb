@@ -1,5 +1,9 @@
-<div class="h-screen w-screen flex justify-center items-center">
-  <div class="w-1.5/3 h-2/3 shadow-lg rounded-3xl p-8 bg-cyan-200 border border-black">
-    <%= link_to "LINEでログイン", line_login_api_login_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+<div class="h-screen w-screen flex justify-center items-center bg-gray-100">
+  <div class="bg-white px-12 py-12 rounded-3xl border-2">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold">LINE通知登録</h2>
+    </div> 
+    <p class="pt-3 pb-3">LINEにて通知を行う場合には、下記よりLINEにログインをお願いします。</p>
+    <%= link_to image_tag("line_login_base.png"), line_login_api_login_path %>
   </div>
 </div>

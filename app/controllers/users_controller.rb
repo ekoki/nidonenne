@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       redirect_to root_path, notice: t('.success')
     else
       flash.now[:alert] = t('.fail')
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

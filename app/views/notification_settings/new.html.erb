@@ -1,5 +1,5 @@
-<div class="h-screen w-screen flex justify-center items-center">
-  <div class="w-1.5/3 h-2/3 shadow-lg rounded-3xl p-8 bg-cyan-200 border border-black">
+<div class="h-screen w-screen flex justify-center items-center bg-gray-100">
+  <div class="bg-white px-12 py-12 rounded-3xl border-2">
     <div class="text-center">
       <h2 class="text-3xl font-bold">通知設定</h2>
     </div>
@@ -7,20 +7,20 @@
       <%= form_with model: @notification_setting, url: notification_settings_path, local: true do |f| %>
         <div class="mt-10">
           <p>ユーザー名:</p>
-          <div class="border border-indigo-600 bg-white p-2">
+          <div class="w-full p-2 border border-black rounded-md">
             <%= current_user.name %>
           </div>
         </div>
-        <div class="mt-5">
-          <%= f.label :send_daily, "#{NotificationSetting.human_attribute_name(:send_daily)}:" %>
-          <%= f.check_box :send_daily %>
-        </div>
+        <%# <div class="mt-5"> %>
+          <%# <%= f.label :send_daily, "#{NotificationSetting.human_attribute_name(:send_daily)}:" %>
+          <%# <%= f.check_box :send_daily %> 
+        <%# </div> %>
         <div class="mt-5">
           <%= f.label :send_time, NotificationSetting.human_attribute_name(:send_time) %>
-          <%= f.datetime_field :send_time, class: 'w-full p-2 border border-indigo-600' %>
+          <%= f.datetime_field :send_time, class: 'w-full p-2 border border-black rounded-md' %>
         </div>
-        <div class="mt-5">
-          <%= f.submit t('defaults.setting'), class: 'mt-1.5 btn btn-primary py-1 px-8' %>
+        <div class="mt-2">
+          <%= f.submit t('defaults.setting'), class: 'mt-1 btn btn-primary py-1 px-8' %>
         </div>
       <% end %>
     </div>

@@ -1,15 +1,18 @@
 <div class="simple-calendar">
-  <div class="calendar-heading flex justify-center">
+  <div class="text-center font-bold text-3xl pb-1.5">
+    <%= "ようこそ#{current_user.name}さん！"%>
+  </div>
+  <div class="calendar-heading text-center">
     <%= link_to t('simple_calendar.previous', default: '<<'), calendar.url_for_previous_view %>
     <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
     <%= link_to t('simple_calendar.next', default: '>>'), calendar.url_for_next_view %>
   </div>
 
   <div class="w-hull px-0.5 py-0.5 flex justify-center">
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-4 w-1/2 mr-1">
-      <table>
+    <div>
+      <table class="bg-white">
         <thead>
-          <tr class="rounded border-2 bg-blue-100">
+          <tr class="rounded border-2 bg-blue-50">
             <% date_range.slice(0, 7).each do |day| %>
               <th><%= t('date.abbr_day_names')[day.wday] %></th>
             <% end %>
@@ -35,5 +38,8 @@
         </tbody>
       </table>
     </div>
+  </div>
+  <div class="text-center">
+    <%= link_to '解答画面へ', new_user_answer_form_path(current_user), class: 'underline text-blue-500' %>
   </div>
 </div>

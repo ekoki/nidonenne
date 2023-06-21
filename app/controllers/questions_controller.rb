@@ -6,13 +6,13 @@ class QuestionsController < ApplicationController
   def create
     question_forms = question_params
     @question = Question.new
-    if @question.question_saves(question_forms, current_user)
+    result = @question.question_saves(question_forms, current_user)
+    if result == 'success'
       redirect_to schedules_index_path, notice: t('.success')
     else
-      flash.now[:alert] = t('.fail')
-      render :new
+      flash.now[:alert] = result
+      render :new, status: :unprocessable_entity
     end
-      
   end
   
   private

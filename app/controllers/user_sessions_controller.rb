@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
       session.delete(:forwarding_url)
     else
       flash.now[:alert] = t('.fail')
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

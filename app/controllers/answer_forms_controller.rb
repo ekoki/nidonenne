@@ -8,27 +8,27 @@ class AnswerFormsController < ApplicationController
     @questions = Question.where(user_id: params[:user_id])
     @question = Question.new
     @answer_form = AnswerForm.new
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: current_user.id)
   end
 
   def create
     @user = User.find(current_user.id)
     @correct_answers = Question.where(user_id: current_user.id)
     @user_answers = user_answer_params
-    @answer_forms = AnswerForm.new(@user_answers)
+    @answer_form = AnswerForm.new(@user_answers)
     @question = Question.new
     @questions = @user.questions
-    unless @answer_forms.valid?
-      render 'answer_forms/new'
+    unless @answer_form.valid?
+      render :new, status: :unprocessable_entity
       return
     end
-    if @answer_forms.correct?(@user_answers, @correct_answers) == 3
+    if @answer_form.correct?(@user_answers, @correct_answers) == 3
       @got_up = GotUp.new
       @got_up.save(@user)
       redirect_to schedules_index_path, notice: t('.success')
     else
       flash.now[:alert] = t('.fail')
-      render 'users/show'
+      render :new, status: :unprocessable_entity
     end
   end
 

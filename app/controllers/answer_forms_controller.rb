@@ -43,7 +43,7 @@ class AnswerFormsController < ApplicationController
       if params[:token]
         token = params[:token]
         user = User.find_by(auth_token: token)
-        user.ensure_auth_token
+        user&.ensure_auth_token
         auto_login(user)
       end
     end

@@ -12,7 +12,7 @@ class NotificationSettingsController < ApplicationController
       DestroyNotificationSettingJob.set(wait_until: send_time + 1.minutes).perform_later(@notification_setting.id)
       redirect_to new_question_path, notice: t('.success')
     else
-      flash.now[:fail] = t('.fail')
+      flash.now[:alert] = t('.fail')
       render :new, status: :unprocessable_entity
     end
   end

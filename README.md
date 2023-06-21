@@ -1,24 +1,33 @@
-# README
+■サービス概要
+2度寝をしてしまう人のために、2度寝を防止するサービス。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+■メインのターゲットユーザー
+朝に勉強を頑張りたいと考えているが、2度寝をしてしまい、朝の勉強時間が短くなってしまう人
 
-Things you may want to cover:
+■ユーザーが抱える課題
+忙しい中で勉強をしている人は、日々の生活の中で勉強時間を確保する必要がある。しかし、社会人や学生等、勉強時間は限られており、その中で勉強時間を確保するためには、早起きして朝の時間を確保することは大切。
+上記のように、勉強するには朝の時間を有効に活用することが重要だが、朝起きるのは大変。
 
-* Ruby version
+■解決方法
+2度寝を防止する仕組みを作る。
+具体的には、朝起きた時にベットから出て問題を解くことによって、頭を働かせ脳を活性化させる。
+また、継続させるためにカレンダーに二度寝の状況を記録する。
 
-* System dependencies
+■実装予定の機能
+・覚えた問題について英単語の設定ができる
+・LINEと連携することにより、設定した時間に問題が届く
+・カレンダーで二度寝の状況を記録できるようにする
 
-* Configuration
+■なぜこのサービスを作りたいのか？
+私自身、アラームをかけても止めてしまい二度寝をすることがある。二度寝をすることにより朝の勉強時間が少なくなり、一日あたりでは大きな差がなくても長い目で見ればその差はとても大きなものになる。そのため、二度寝を防止するためのサービスを作りたいと思った。二度寝を防止するために、起きてすぐに問題を解くことによって、脳を活性化させ、カレンダーで二度寝の状況を把握できることによって、継続するモチベーションにつながるようにした(二度寝していない期間が続くことによって、その記録を途絶えさせないようにする気持ちが働く)。また、自分自身で勉強したことを問題として設定し、朝に復習として解くことによって、記憶の定着も進み、勉強への手助けになると考えた。これにより、二度寝防止だけでなく、勉強への一助になればいいなと思った。
 
-* Database creation
+■技術選定
+Ruby
+Ruby on Rails
+jQuery
 
-* Database initialization
+■画面遷移図
+https://www.figma.com/file/Jfx0llfG7TVhXcevYjxUjV/PF%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0%3A1&t=oAIbSPkD4yl9vMLg-1
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+■ER図
+https://app.diagrams.net/

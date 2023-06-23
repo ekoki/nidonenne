@@ -20,20 +20,14 @@ class User < ApplicationRecord
     id == object.user_id
   end
 
+  # LINEから解答フォームを開く際に、トークンの有効期限を設定している。
   def ensure_auth_token
-    if auth_token_created_at < 24.hours.ago
-      regenerate_auth_token
-      self.auth_token_created_at = Time.current
-      save!
+    if self.auth_token_created_at < 24.hours.ago
+      token = SecureRandom.urlsafe_base64
+      token_created_at = Time.current
+      self.update!(auth_token: token, auth_token_created_at: token_created_at)
+      return true
     end
   end
-
-  private
-
-  def regenerate_auth_token
-    self.auth_token = SecureRandom.urlsafe_base64
-  end
-  
-
 
 end

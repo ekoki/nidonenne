@@ -4,9 +4,8 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    question_forms = question_params
     @question = Question.new
-    result = @question.question_saves(question_forms, current_user)
+    result = @question.question_saves(question_params, current_user)
     if result == 'success'
       redirect_to schedules_index_path, notice: t('.success')
     else

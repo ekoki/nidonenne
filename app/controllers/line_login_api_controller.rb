@@ -4,6 +4,9 @@ class LineLoginApiController < ApplicationController
   require 'typhoeus'
   require 'securerandom'
 
+  def new
+  end
+
   def login
 
     # CSRF対策用の固有な英数字の文字列

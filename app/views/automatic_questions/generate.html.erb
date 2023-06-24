@@ -1,0 +1,12 @@
+<%= turbo_frame_tag 'automatic_questions' do %>
+  <% @automatic_questions.each_with_index do |aq, i| %>
+    <div class="flex flex-col mb-4">
+      <%= label_tag "question_questions[#{i+1}]", "問題#{i+1}", class: 'mb-2 font-bold text-lg' %>
+      <%= text_area_tag "question[questions][#{i}][question]", aq.question, rows: 1, class: 'w-full p-2 border border-black rounded-md' %>
+    </div>
+    <div class="flex flex-col mb-4">
+      <%= label_tag "answer_#{i+1}", "解答#{i+1}", class: 'mb-2 font-bold text-lg text-gray-700' %>
+      <%= text_area_tag "question[questions][#{i}][answer]", aq.answer, rows: 1, class: 'w-full p-2 border border-black rounded-md' %>
+    </div>
+  <% end %>
+<% end %>

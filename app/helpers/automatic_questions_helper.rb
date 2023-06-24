@@ -1,0 +1,2 @@
+module AutomaticQuestionsHelper
+end

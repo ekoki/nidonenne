@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   # 問題・解答フォーム
   resources :questions, only: %i[new create]
 
+  # 問題・解答自動作成
+  get 'generate', to: 'automatic_questions#generate'
+
   # LINEAPI
   post 'webhook', to: 'line_users#webhook'
   get 'line_login_api/new', to: 'line_login_api#new'

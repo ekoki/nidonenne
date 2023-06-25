@@ -50,3 +50,6 @@ node_modules
 /.env
 
 dump.rdb
+
+db/English_word.csv
+db/seeds.rb

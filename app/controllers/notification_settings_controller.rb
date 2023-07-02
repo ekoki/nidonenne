@@ -8,7 +8,6 @@ class NotificationSettingsController < ApplicationController
     @current_time = Time.current
     if @notification_setting.save
       send_time = @notification_setting.send_time
-      binding.break
       case @notification_setting.notification_schedule
       when @notification_setting.daily?
         SendLineMessageJob.set(wait_until: send_time).perform_later(@notification_setting.id, current_user.id)

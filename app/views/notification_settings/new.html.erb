@@ -17,8 +17,8 @@
           <%= f.datetime_field :send_time, class: 'w-full p-2 border border-black rounded-md' %>
         </div>
         <div class="mt-5">
-          <%= f.label :send_daily, NotificationSetting.human_attribute_name(:send_daily) %>
-          <%= f.select :send_daily, {'毎日': 1, '平日のみ': 2, '土日のみ': 3}, { include_blank: ''}, class: 'w-full p-2 border border-black rounded-md' %>
+          <%= f.label :notification_schedule, NotificationSetting.human_attribute_name(:notification_schedule) %>
+          <%= f.select :notification_schedule, {'毎日': 'daily', '平日のみ': 'weekday', '土日のみ': 'weekend'}, { include_blank: ''}, class: 'w-full p-2 border border-black rounded-md' %>
         </div>
         <div class="mt-2">
           <%= f.submit t('defaults.setting'), class: 'mt-1 btn btn-primary py-1 px-8' %>

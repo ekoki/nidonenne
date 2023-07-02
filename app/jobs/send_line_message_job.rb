@@ -4,8 +4,10 @@ class SendLineMessageJob < ApplicationJob
 
   def perform(*args)
     send_push_message_by_notification_setting_id(args[0], args[1])
-    current_user = User.find(args[1])
     notification_setting = NotificationSetting.find(args[0])
+    send_time = notification_setting.send_time
+    DestroyNotificationSettingJob.set(wait_until: send_time + 1.minutes).perform_later(notification_setting.id)
+    current_user = User.find(args[1])
     notification_setting.send_time = Time.current + 1.minutes
     notification_setting.save
     send_time = notification_setting.send_time

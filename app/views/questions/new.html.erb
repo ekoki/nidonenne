@@ -1,27 +1,23 @@
 <div class="flex justify-center items-center pb-36 pt-36 bg-gray-100">
   <div class="bg-white w-1/4 h-1/4 px-12 py-12 rounded-3xl border-2">
     <div class="text-center">
-      <h2 class="text-3xl font-bold">問題設定</h2>
+      <h2 class="text-3xl font-bold pb-3">問題設定</h2>
     </div>
-      <%= form_with model: @question, local: true do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-          <%= turbo_frame_tag 'automatic_questions' do %>
-              <% 3.times do |i| %>
-                <div class="flex flex-col mb-4">
-                  <%= f.label "question_#{i+1}", "問題#{i+1}", class: 'mb-2 font-bold text-lg' %>
-                  <%# 数値を入れないと1問だけしかcreateアクションに行かない。 %>
-                  <%= f.text_area "questions[#{i}][question]", rows: 1, class: 'w-full p-2 border border-black rounded-md' %>
-                </div>
-                <div class="flex flex-col mb-4">
-                  <%= f.label "answer_#{i+1}", "解答#{i+1}", class: 'mb-2 font-bold text-lg text-gray-700' %>
-                  <%= f.text_area "questions[#{i}][answer]", rows: 1, class: 'w-full p-2 border border-black rounded-md' %>
-                </div>
-              <% end %>
-              <%# リンクについては、turbo_frame_tag内に入れることにより、Turbo Frameからのリクエストになる。 %>
-              <p>問題の自動作成は<%= link_to 'こちら', generate_path, class: 'underline text-blue-500' %></p>
-          <% end %>
-          <%= f.submit "保存する", class: 'mt-1.5 btn btn-primary py-1 px-8' %>
-        <% end %>
+    <div class="tab-panel">
+      <!--タブ-->
+      <ul class="tab-group">
+        <li class="tab tab-A is-active">一日分</li>
+        <li class="tab tab-B">1週間分</li>
+        <li class="tab tab-C">平日分</li>
+        <li class="tab tab-C">土日分</li>
+      </ul>
+      <!--タブを切り替えて表示するコンテンツ-->
+      <div class="panel-group">
+        <div class="panel tab-A is-show"><%= render partial: 'form', locals: { amount: 3} %></div>
+        <div class="panel tab-B"><%= render partial: 'form', locals: { amount: 21} %></div>
+        <div class="panel tab-C"><%= render partial: 'form', locals: { amount: 15} %></div>
+        <div class="panel tab-C"><%= render partial: 'form', locals: { amount: 6} %></div>
+      </div>
     </div>
   </div>
 </div>

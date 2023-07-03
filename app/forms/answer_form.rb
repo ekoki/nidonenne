@@ -12,7 +12,8 @@ class AnswerForm
   validates :answer1, presence: true
   validates :answer2, presence: true
 
-  def correct?(user_answers, correct_answers)
+
+  def correct?(user_answers, correct_answers, get_question_ids)
     correct_count = 0
     correct_answers.each do |correct_answer|
       user_answers.each do |key, value|
@@ -21,7 +22,13 @@ class AnswerForm
         end
       end
     end
-    return correct_count
+    if correct_count == 3
+      get_question_ids.each do |get_question_id|
+        question = Question.find(get_question_id)
+        question.destroy
+      end
+      return true
+    end
   end
 
 end

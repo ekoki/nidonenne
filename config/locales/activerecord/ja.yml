@@ -9,8 +9,16 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
       notification_setting:
-        send_daily: '毎日同じ時刻に設定'
-        send_time: '起床時間'
+        notification_schedule: '任意設定'
+        send_time: '送信時間'
+        user_id: ''
+    errors:
+      models:
+        notification_setting:
+          attributes:
+            user_id:
+              taken: '通知は12時間に1回のみ設定できます'
+
 
   activemodel:
     attributes:

@@ -1,7 +1,8 @@
 class AutomaticQuestionsController < ApplicationController
 
   def generate
-    @automatic_questions = AutomaticQuestion.order(Arel.sql('RANDOM()')).limit(3)
-   end
+    frequency = params[:frequency]
+    @automatic_questions = AutomaticQuestion.order(Arel.sql('RANDOM()')).limit(frequency)
+  end
 
 end

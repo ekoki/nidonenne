@@ -14,8 +14,7 @@ class AnswerFormsController < ApplicationController
     @user = User.find(current_user.id)
     @correct_answers = Question.where(user_id: current_user.id)
     @answer_form = AnswerForm.new
-    @questions = current_user.questions
-    if @answer_form.correct?(user_answer_params, @correct_answers) == 3
+    if @answer_form.correct?(user_answer_params, @correct_answers, get_question_ids)
       @got_up = GotUp.new
       @got_up.save(@user)
       redirect_to schedules_index_path, notice: t('.success')
@@ -31,6 +30,17 @@ class AnswerFormsController < ApplicationController
     params.require(:answer_form).permit(:answer0, :answer1, :answer2)
   end
 
+  def get_question_ids
+    # パラメータを格納する配列を初期化
+    question_ids = []
 
+    # ループ処理でパラメータを取得
+    3.times do |i|
+      question_ids << params["question_id_#{i}"]
+    end
+    
+    # このコードを実施しないと、3.times do |i|の3が返り値となってしまう
+    return question_ids
+  end
 
 end

@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   get 'generate', to: 'automatic_questions#generate'
 
   # LINEAPI
-  post 'webhook', to: 'line_users#webhook'
   get 'line_login_api/new', to: 'line_login_api#new'
   get 'line_login_api/login', to: 'line_login_api#login'
   get 'line_login_api/callback', to: 'line_login_api#callback'

@@ -12,6 +12,7 @@
           <%= f.text_area "questions[#{i}][answer]", rows: 1, class: 'w-full p-2 border border-black rounded-md' %>
         </div>
       <% end %>
+      <%= hidden_field_tag :frequency, amount %>
       <%# リンクについては、turbo_frame_tag内に入れることにより、Turbo Frameからのリクエストになる。 %>
       <p>問題の自動作成は<%= link_to 'こちら', generate_path(frequency: amount), class: 'underline text-blue-500' %></p>
   <% end %>

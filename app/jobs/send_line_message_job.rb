@@ -4,14 +4,6 @@ class SendLineMessageJob < ApplicationJob
 
   def perform(*args)
     send_push_message_by_notification_setting_id(args[0], args[1])
-    notification_setting = NotificationSetting.find(args[0])
-    send_time = notification_setting.send_time
-    DestroyNotificationSettingJob.set(wait_until: send_time + 1.minutes).perform_later(notification_setting.id)
-    current_user = User.find(args[1])
-    notification_setting.send_time = Time.current + 1.minutes
-    notification_setting.save
-    send_time = notification_setting.send_time
-    SendLineMessageJob.set(wait_until: send_time).perform_later(notification_setting.id, current_user.id)
   end
 
   private
@@ -44,7 +36,7 @@ class SendLineMessageJob < ApplicationJob
   def send_message(notification, current_user)
     message = "おはようございます！\n本日の問題を送信します。\n"
     user = User.find_by(id: current_user)
-    message << Rails.application.routes.url_helpers.new_user_answer_form_url(user, token: user.auth_token, host: 'glacial-dusk-80037-afde0a3307df.herokuapp.com')
+    message << Rails.application.routes.url_helpers.new_user_answer_form_url(user, token: user.auth_token, host: '7adf-126-227-130-93.ngrok-free.app')
 
     message
   end

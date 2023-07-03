@@ -18,7 +18,7 @@
         </div>
         <div class="mt-5">
           <%= f.label :notification_schedule, NotificationSetting.human_attribute_name(:notification_schedule) %>
-          <%= f.select :notification_schedule, {'毎日': 'daily', '平日のみ': 'weekday', '土日のみ': 'weekend'}, { include_blank: ''}, class: 'w-full p-2 border border-black rounded-md' %>
+          <%= f.select :notification_schedule, {'設定しない': 'not_setting', '毎日': 'daily', '平日のみ': 'weekday', '土日のみ': 'weekend'}, { include_blank: ''}, class: 'w-full p-2 border border-black rounded-md' %>
         </div>
         <div class="mt-2">
           <%= f.submit t('defaults.setting'), class: 'mt-1 btn btn-primary py-1 px-8' %>

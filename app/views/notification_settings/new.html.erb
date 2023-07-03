@@ -14,7 +14,7 @@
         </div>
         <div class="mt-5">
           <%= f.label :send_time, NotificationSetting.human_attribute_name(:send_time) %>
-          <%= f.datetime_field :send_time, class: 'w-full p-2 border border-black rounded-md' %>
+          <%= f.time_field :send_time, class: 'w-full p-2 border border-black rounded-md' %>
         </div>
         <div class="mt-5">
           <%= f.label :notification_schedule, NotificationSetting.human_attribute_name(:notification_schedule) %>

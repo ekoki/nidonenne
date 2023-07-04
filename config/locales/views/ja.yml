@@ -28,6 +28,8 @@ ja:
     create:
       success: '通知設定が完了しました'
       fail: '通知設定に失敗しました'
+    destroy:
+      success: '削除に成功しました'
   questions:
     create:
       success: '問題の登録が完了しました'

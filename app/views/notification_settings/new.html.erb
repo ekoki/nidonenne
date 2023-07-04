@@ -25,6 +25,11 @@
         </div>
       <% end %>
     </div>
+    <% if @delete_notification&.notification_schedule != nil && @delete_notification.notification_schedule != NotificationSetting.notification_schedules[:not_setting] %>
+      <div class="mt-2 text-xs">
+        <p>設定ずみの通知の解除は<%= link_to 'こちら', notification_setting_path(@delete_notification), data: { turbo_method: :delete } %></p>
+      </div>
+    <% end %>
     <div class="mt-2 text-xs">
       <p>ラインのユーザー登録は<%= link_to 'こちら', line_login_api_new_path %></p>
     </div>

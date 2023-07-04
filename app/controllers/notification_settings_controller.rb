@@ -1,6 +1,7 @@
 class NotificationSettingsController < ApplicationController
   def new
     @notification_setting = NotificationSetting.new
+    @delete_notification = NotificationSetting.find_by(user_id: current_user.id)
   end
 
   def create
@@ -10,7 +11,7 @@ class NotificationSettingsController < ApplicationController
       send_time = @notification_setting.send_time
       # 下記コードにより、send_time時間になるとSendLineMessageJobが実行される。
       SendLineMessageJob.set(wait_until: send_time).perform_later(@notification_setting.id, current_user.id, @notification_setting.notification_schedule)
-      if @notification_setting.notification_schedule == 'not_setting'
+      if @notification_setting.notification_schedule == NotificationSetting.notification_schedules[:not_setting]
         DestroyNotificationSettingJob.set(wait_until: send_time + 1.minutes).perform_later(@notification_setting.id)
       end
       redirect_to new_question_path, notice: t('.success')
@@ -20,8 +21,10 @@ class NotificationSettingsController < ApplicationController
     end
   end
 
-  def update
-
+  def destroy
+    notification = NotificationSetting.find(params[:id])
+    notification.destroy
+    redirect_to new_notification_setting_path, notice: t('.success'), status: :see_other
   end
 
 

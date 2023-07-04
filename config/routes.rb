@@ -32,6 +32,6 @@ Rails.application.routes.draw do
   get 'schedules/index'
 
   # 通知
-  resources :notification_settings, only: %i[new create]
+  resources :notification_settings, only: %i[new create destroy]
 
 end

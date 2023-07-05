@@ -14,6 +14,7 @@ class AnswerForm
 
 
   def correct?(user_answers, correct_answers, get_question_ids)
+    return '解答を入力して下さい' if blank?(user_answers)
     correct_count = 0
     correct_answers.each do |correct_answer|
       user_answers.each do |key, value|
@@ -22,6 +23,7 @@ class AnswerForm
         end
       end
     end
+    return '間違えています' if correct_count != 3
     if correct_count == 3
       get_question_ids.each do |get_question_id|
         question = Question.find(get_question_id)
@@ -29,6 +31,15 @@ class AnswerForm
       end
       return true
     end
+  end
+
+  private
+
+  def blank?(user_answers)
+    user_answers.each do |key, value|
+      return true if value.empty?
+    end
+    false
   end
 
 end

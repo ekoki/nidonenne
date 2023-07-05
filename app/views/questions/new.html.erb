@@ -4,20 +4,31 @@
       <h2 class="text-3xl font-bold pb-3">問題設定</h2>
     </div>
     <div class="tab-panel">
-      <!--タブ-->
-      <ul class="tab-group">
-        <li class="tab tab-A is-active">一日分</li>
-        <li class="tab tab-B">1週間分</li>
-        <li class="tab tab-C">平日分</li>
-        <li class="tab tab-C">土日分</li>
-      </ul>
-      <!--タブを切り替えて表示するコンテンツ-->
-      <div class="panel-group">
-        <div class="panel tab-A is-show"><%= render partial: 'form', locals: { amount: 3} %></div>
-        <div class="panel tab-B"><%= render partial: 'form', locals: { amount: 21} %></div>
-        <div class="panel tab-C"><%= render partial: 'form', locals: { amount: 15} %></div>
-        <div class="panel tab-C"><%= render partial: 'form', locals: { amount: 6} %></div>
-      </div>
+      <% if @amount %>
+        <!--タブ-->
+        <ul class="tab-group">
+          <li class="tab tab-A <%= 'is-active' if @amount == 3 %>">一日分</li>
+          <li class="tab tab-B <%= 'is-active' if @amount == 21 %>">1週間分</li>
+          <li class="tab tab-C <%= 'is-active' if @amount == 15 %>">平日分</li>
+          <li class="tab tab-D <%= 'is-active' if @amount == 6 %>">土日分</li>
+        </ul>
+        <%= render partial: 'form', locals: { amount: @amount} %>
+      <% else %>
+        <!--タブ-->
+        <ul class="tab-group">
+          <li class="tab tab-A is-active">一日分</li>
+          <li class="tab tab-B">1週間分</li>
+          <li class="tab tab-C">平日分</li>
+          <li class="tab tab-D">土日分</li>
+        </ul>
+        <!--タブを切り替えて表示するコンテンツ-->
+        <div class="panel-group">
+          <div class="panel tab-A is-show"><%= render partial: 'form', locals: { amount: 3} %></div>
+          <div class="panel tab-B"><%= render partial: 'form', locals: { amount: 21} %></div>
+          <div class="panel tab-C"><%= render partial: 'form', locals: { amount: 15} %></div>
+          <div class="panel tab-D"><%= render partial: 'form', locals: { amount: 6} %></div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

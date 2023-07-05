@@ -11,7 +11,9 @@
     <div class="nav navbar justify-end">
       <%= link_to 'マイページ', schedules_index_path, class: 'btn btn-ghost normal-case text-base' %>
       <%= link_to '通知設定', new_notification_setting_path, class: 'btn btn-ghost normal-case text-base' %>
-      <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: 'btn btn-ghost normal-case text-base' %>
+      <%= link_to '問題設定', new_question_path, class: 'btn btn-ghost normal-case text-base' %>
+      <%= link_to '解答画面', new_user_answer_form_path(current_user), class: 'btn btn-ghost normal-case text-base' %>
+      <%= link_to 'ログアウト', logout_path, data: { turbo: true, turbo_method: :delete }, class: 'btn btn-ghost normal-case text-base' %>
     </div>
   </div>
 </header>

@@ -9,4 +9,5 @@
       <%= text_area_tag "question[questions][#{i}][answer]", aq.answer, rows: 1, class: 'w-full p-2 border border-black rounded-md' %>
     </div>
   <% end %>
+  <%= hidden_field_tag :frequency, @amount %>
 <% end %>

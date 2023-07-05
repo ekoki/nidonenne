@@ -14,6 +14,7 @@ class AnswerFormsController < ApplicationController
     @user = User.find(current_user.id)
     @correct_answers = Question.where(user_id: current_user.id)
     @answer_form = AnswerForm.new
+    @questions = Question.where(user_id: params[:user_id])
     if @answer_form.correct?(user_answer_params, @correct_answers, get_question_ids)
       @got_up = GotUp.new
       @got_up.save(@user)

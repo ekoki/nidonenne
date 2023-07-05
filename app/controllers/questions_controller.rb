@@ -9,7 +9,8 @@ class QuestionsController < ApplicationController
     if result == 'success'
       redirect_to schedules_index_path, notice: t('.success')
     else
-      flash.now[:alert] = result
+      @amount = params[:frequency].to_i
+      flash.now[:alert] = t('.fail')
       render :new, status: :unprocessable_entity
     end
   end

@@ -14,10 +14,6 @@
           <%= f.password_field :password, class: 'w-full p-2 border border-black rounded-md' %>
         </div>
         <div>
-          <%= f.label :password_confirmation, User.human_attribute_name(:password_confirmation) %>
-          <%= f.password_field :password_confirmation, class: 'w-full p-2 border border-black rounded-md' %>
-        </div>
-        <div>
           <%= f.submit t('defaults.login'), class: 'mt-1.5 btn btn-primary py-1 px-8' %>
         </div>
       <% end %>

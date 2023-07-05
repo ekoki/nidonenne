@@ -90,6 +90,7 @@
   height: 1.5rem;
   top: 15px;
   right: 15px;
+  cursor: pointer;
 }
 .nav_toggle i {
   display: block;
@@ -155,7 +156,7 @@
 .tab.is-active{
   background-color: #cdcdcd;
   color: #000000;
-  transition: all 0.2s ease-out;
+  transition: all 0.01s ease-out;
 }
 .panel.is-show{
   display:block;

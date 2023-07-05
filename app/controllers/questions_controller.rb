@@ -5,10 +5,11 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new
-    result = @question.save(question_params, current_user)
-    if result == 'success'
+    @question = @question.create(question_params, current_user)
+    if @question.persisted?
       redirect_to schedules_index_path, notice: t('.success')
     else
+      # binding.break
       @amount = params[:frequency].to_i
       flash.now[:alert] = t('.fail')
       render :new, status: :unprocessable_entity

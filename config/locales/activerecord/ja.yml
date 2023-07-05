@@ -12,12 +12,16 @@ ja:
         notification_schedule: '任意設定'
         send_time: '送信時間'
         user_id: ''
+      question:
+        question: '問題'
+        answer: '解答'
     errors:
       models:
         notification_setting:
           attributes:
             user_id:
               taken: '通知は12時間に1回のみ設定できます'
+
 
 
   activemodel:

@@ -15,12 +15,14 @@ class AnswerFormsController < ApplicationController
     @correct_answers = Question.where(user_id: current_user.id)
     @answer_form = AnswerForm.new
     @questions = Question.where(user_id: params[:user_id])
-    if @answer_form.correct?(user_answer_params, @correct_answers, get_question_ids)
+    @judgement = @answer_form.correct?(user_answer_params, @correct_answers, get_question_ids)
+    # binding.break
+    if @judgement == true
       @got_up = GotUp.new
       @got_up.save(@user)
       redirect_to schedules_index_path, notice: t('.success')
     else
-      flash.now[:alert] = t('.fail')
+      flash.now[:alert] = @judgement
       render :new, status: :unprocessable_entity
     end
   end

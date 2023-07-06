@@ -8,9 +8,18 @@
       <i></i>
       <i></i>
     </span>
-    <div class="nav navbar justify-end">
-      <%= link_to '新規登録', new_user_path , class: 'btn btn-ghost normal-case text-base' %>
-      <%= link_to 'ログイン', login_path , class: 'btn btn-ghost normal-case text-base' %>
-    </div>
+    <ul class="nav navbar justify-end flex mt-20 ">
+      <div class="flex-col bg-white border border-black rounded-3xl px-3">
+        <li>
+          <%= link_to '新規登録', new_user_path , class: 'btn btn-ghost normal-case text-base' %>
+        </li>
+        <li>
+          <%= link_to 'ログイン', login_path , class: 'btn btn-ghost normal-case text-base' %>
+        </li>
+      </div>
+    </ul>
   </div>
 </header>
+
+      
+      

@@ -1,17 +1,17 @@
 <div class="flex flex-col pb-36 bg-gray-100">
-  <div class="flex-grow mt-28">
+  <div class="flex-grow mt-36 md:mt-28 group/item">
       <%= month_calendar(events: @got_ups) do |date, got_ups| %>
-        <div class="border rounded h-20 w-28">
-          <div class="font-bold w-full text-left">
+        <div class="border rounded h-10 w-10 md:h-20 md:w-28">
+          <div class="font-bold w-1/2 text-center rounded-3xl md:text-left">
             <%= date.day %>
           </div>
           <% got_ups.each do |got_up| %>
             <div class="font-thin">
               <% datetime = got_up.start_time %>
               <% time = datetime.strftime("%H:%M") %>
-              <div class="flex items-center">
-                <i class="fa-solid fa-thumbs-up mr-1"></i>
-                <p class="font-bold"><%= "#{time}" %></p>
+              <div class="flex items-cente ">
+                <i class="fa-solid fa-thumbs-up mr-1 md:opacity-100 text-black opacity-0 group-hover/item:opacity-75"></i>
+                <p class="font-bold md:opacity-100  text-black opacity-0 group-hover/item:opacity-75"><%= "#{time}" %></p>
               </div>
             </div>
           <% end %>

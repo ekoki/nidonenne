@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   # トップページ
   root 'static_pages#top'
 
+  # 静的ページ
+  get 'privacy_policy', to: 'static_pages#privacy_policy'
+  get 'terms_of_service', to: 'static_pages#terms_of_service'
+  get 'contact', to: 'static_pages#contact'
+
+
   # ユーザー登録・解答関係
   resources :users, only: %i[new create show] do
     resources :answer_forms, only: %i[create new]

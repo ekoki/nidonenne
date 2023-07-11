@@ -52,4 +52,4 @@ node_modules
 dump.rdb
 
 # db/English_word.csv
-db/seeds.rb
+# db/seeds.rb

@@ -36,7 +36,7 @@ class SendLineMessageJob < ApplicationJob
   def send_message(notification, current_user)
     message = "おはようございます！\n本日の問題を送信します。\n"
     user = User.find_by(id: current_user)
-    message << Rails.application.routes.url_helpers.new_user_answer_form_url(user, token: user.auth_token, host: '7adf-126-227-130-93.ngrok-free.app')
+    message << Rails.application.routes.url_helpers.new_user_answer_form_url(user, token: user.auth_token, host: 'www.nidonenne.com')
 
     message
   end

@@ -11,7 +11,7 @@ class GotUp < ApplicationRecord
       send_time = user.notification_settings.first.send_time.strftime("%H:%M:%S").to_i
     end
     if  current_time < send_time + 10.minutes
-      GotUp.create!(user_id: user.id, got_up: true, start_time: current_time)
+      GotUp.create!(user_id: user.id, got_up: true, start_time: Time.current)
     end
   end
 

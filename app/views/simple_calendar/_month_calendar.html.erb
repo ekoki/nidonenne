@@ -1,6 +1,6 @@
 <div class="simple-calendar">
   <div class="text-center font-bold text-3xl pb-1.5">
-    <%= "ようこそ#{current_user.name}さん！"%>
+    <%= "ようこそ、#{current_user.name}さん！"%>
   </div>
   <div class="calendar-heading text-center">
     <%= link_to t('simple_calendar.previous', default: '<<'), calendar.url_for_previous_view %>

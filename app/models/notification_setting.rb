@@ -3,6 +3,7 @@ class NotificationSetting < ApplicationRecord
 
   validates :send_time, presence: true
   validates :user_id, uniqueness: true
+  validates :user_id, presence: true
 
   enum notification_schedule: { not_setting: 0, daily: 1, weekday: 2, weekend: 3 }
 

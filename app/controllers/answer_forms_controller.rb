@@ -16,7 +16,6 @@ class AnswerFormsController < ApplicationController
     @answer_form = AnswerForm.new
     @questions = Question.where(user_id: params[:user_id])
     @judgement = @answer_form.correct?(user_answer_params, @correct_answers, get_question_ids)
-    # binding.break
     if @judgement == true
       @got_up = GotUp.new
       @got_up.save_got_up(@user)

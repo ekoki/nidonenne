@@ -7,14 +7,18 @@
       <%= form_with model: @notification_setting, url: notification_settings_path, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="mt-10">
-          <p>ユーザー名:</p>
+          <p>ユーザー名</p>
           <div class="w-full p-2 border border-black rounded-md">
             <%= current_user.name %>
           </div>
         </div>
         <div class="mt-5">
-          <%= f.label :send_time, NotificationSetting.human_attribute_name(:send_time) %>
-          <%= f.time_field :send_time, class: 'w-full p-2 border border-black rounded-md' %>
+          <div>
+            <%= f.label :send_time, NotificationSetting.human_attribute_name(:send_time) %>
+          </div>
+          <div class="w-full p-2 border border-black rounded-md">
+            <%= f.time_select :send_time %>
+          </div>
         </div>
         <div class="mt-5">
           <%= f.label :notification_schedule, NotificationSetting.human_attribute_name(:notification_schedule) %>

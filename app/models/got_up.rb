@@ -3,9 +3,13 @@ class GotUp < ApplicationRecord
 
   validates :got_up, presence: true
   
-  def save(user)
+  def save_got_up(user)
     current_time = Time.current
-    send_time = user.notification_settings.first.send_time
+    if user.notification_settings.first.send_time.nil?
+      return false
+    else
+      send_time = user.notification_settings.first.send_time
+    end
     if  current_time < send_time + 10.minutes
       GotUp.create!(user_id: user.id, got_up: true, start_time: current_time)
     end

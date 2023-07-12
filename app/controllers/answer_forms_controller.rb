@@ -19,7 +19,7 @@ class AnswerFormsController < ApplicationController
     # binding.break
     if @judgement == true
       @got_up = GotUp.new
-      @got_up.save(@user)
+      @got_up.save_got_up(@user)
       redirect_to schedules_index_path, notice: t('.success')
     else
       flash.now[:alert] = @judgement

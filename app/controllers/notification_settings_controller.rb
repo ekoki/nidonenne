@@ -11,7 +11,7 @@ class NotificationSettingsController < ApplicationController
       send_time = @notification_setting.send_time
       # 下記コードにより、send_time時間になるとSendLineMessageJobが実行される。
       SendLineMessageJob.set(wait_until: send_time).perform_later(@notification_setting.id, current_user.id, @notification_setting.notification_schedule)
-      if @notification_setting.notification_schedule == NotificationSetting.notification_schedules[:not_setting]
+      if @notification_setting.notification_schedule == NotificationSetting.notification_schedules.keys[0]
         DestroyNotificationSettingJob.set(wait_until: send_time + 1.minutes).perform_later(@notification_setting.id)
       end
       redirect_to new_question_path, notice: t('.success')

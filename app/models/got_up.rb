@@ -5,7 +5,6 @@ class GotUp < ApplicationRecord
   
   def save_got_up(user)
     current_time = Time.current
-    binding.break
     if user.notification_settings.first.send_time.nil?
       return false
     else

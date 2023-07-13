@@ -1,4 +1,4 @@
-<div class="flex justify-center bg-gray-100">
+<div class="h-screen w-screen flex justify-center items-center bg-gray-100">
   <div class="xl:w-1/3 md:w-2/3 shadow-lg rounded-3xl px-8 py-12 bg-white border mt-32 mb-32">
     <div class="text-center">
       <h2 class="text-3xl font-bold pb-2.5"><%= current_user.name %>さんの解答</h2>
@@ -19,7 +19,7 @@
           <% end %>
           <%= f.submit t('defaults.answer'), class: 'mt-1.5 btn btn-primary py-1 px-8' %>
           <div class="mt-2 text-xs">
-            <p>問題を<%= link_to '削除', questions_bulk_destroy_path(ids: @questions.first(3).pluck(:id)), class: 'underline', data: { turbo: true, turbo_method: :delete, turbo_confirm: '削除しますか?' } %>する</p>
+            <p>問題の削除は<%= link_to 'こちら', questions_bulk_destroy_path(ids: @questions.first(3).pluck(:id)), class: 'text-blue-500 underline', data: { turbo: true, turbo_method: :delete, turbo_confirm: '削除しますか?' } %></p>
           </div>
         <% end %>
      <% else %>

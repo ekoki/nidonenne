@@ -31,11 +31,11 @@
     </div>
     <% if @delete_notification&.notification_schedule != nil && @delete_notification.notification_schedule != NotificationSetting.notification_schedules[:not_setting] %>
       <div class="mt-2 text-xs">
-        <p>設定済みの通知の解除は<%= link_to 'こちら', notification_setting_path(@delete_notification), data: { turbo: true, turbo_method: :delete, turbo_confirm: '削除しますか?' } %></p>
+        <p>設定済みの通知の解除は<%= link_to 'こちら', notification_setting_path(@delete_notification), data: { turbo: true, turbo_method: :delete, turbo_confirm: '削除しますか?' }, class: 'text-blue-500 underline' %></p>
       </div>
     <% end %>
     <div class="mt-2 text-xs">
-      <p>ラインのユーザー登録は<%= link_to 'こちら', line_login_api_new_path %></p>
+      <p>ラインのユーザー登録は<%= link_to 'こちら', line_login_api_new_path, class: 'text-blue-500 underline' %></p>
     </div>
   </div>
 </div>

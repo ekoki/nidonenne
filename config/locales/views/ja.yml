@@ -34,6 +34,8 @@ ja:
     create:
       success: '問題の登録が完了しました'
       fail: '問題の登録に失敗しました'
+    bulk_destroy:
+      success: '問題が削除されました。'
   answer_forms:
     create:
       success: '正解しました！'

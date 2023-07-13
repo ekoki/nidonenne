@@ -18,6 +18,9 @@
             </div>
           <% end %>
           <%= f.submit t('defaults.answer'), class: 'mt-1.5 btn btn-primary py-1 px-8' %>
+          <div class="mt-2 text-xs">
+            <p>問題を<%= link_to '削除', questions_bulk_destroy_path(ids: @questions.first(3).pluck(:id)), class: 'underline', data: { turbo: true, turbo_method: :delete, turbo_confirm: '削除しますか?' } %>する</p>
+          </div>
         <% end %>
      <% else %>
         <div>

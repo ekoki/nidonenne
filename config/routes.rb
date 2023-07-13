@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get 'terms_of_service', to: 'static_pages#terms_of_service'
   get 'contact', to: 'static_pages#contact'
 
-
   # ユーザー登録・解答関係
   resources :users, only: %i[new create show] do
     resources :answer_forms, only: %i[create new]
@@ -25,6 +24,7 @@ Rails.application.routes.draw do
 
   # 問題・解答フォーム
   resources :questions, only: %i[new create]
+  delete 'questions/bulk_destroy', to: 'questions#bulk_destroy'
 
   # 問題・解答自動作成
   get 'generate', to: 'automatic_questions#generate'

@@ -15,6 +15,11 @@ class QuestionsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def bulk_destroy
+    current_user.questions.where(id: params[:ids]).destroy_all
+    redirect_to new_user_answer_form_path(current_user), notice: t('.success'), status: :see_other
+  end
   
   private
 

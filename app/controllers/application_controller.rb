@@ -5,14 +5,15 @@ class ApplicationController < ActionController::Base
   # LINEから解答フォームを開く際に、自動でログインできるようにする。
   def login_with_token
     unless logged_in?
-      if params[:token]
-        token = params[:token]
-        user = User.find_by(auth_token: token)
-        if user&.ensure_auth_token
-          redirect_to schedules_index_path, notice: 'トークンの有効期限が切れました。'    
-        else
-          auto_login(user)
-        end
+      token = params[:token]
+      user = User.find_by(auth_token: token)
+      if user && user.deadline
+        auto_login(user)
+      elsif user && !user.deadline == true
+        user.ensure_auth_token
+        redirect_to root_path, notice: 'トークンの有効期限が切れました'
+      else user == nil
+        redirect_to root_path, notice: 'ログインをお願いします'
       end
     end
   end

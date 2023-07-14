@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
         auto_login(user)
       elsif user && !user.deadline == true
         user.ensure_auth_token
-        redirect_to root_path, notice: 'トークンの有効期限が切れました'
+        redirect_to root_path, notice: 'トークンの有効期限が切れました。ログインをお願いします'
       else user == nil
-        nil_user = User.find(params[:id])
+        nil_user = User.find(params[:user_id])
         nil_user.ensure_auth_token
         redirect_to root_path, notice: 'ログインをお願いします'
       end

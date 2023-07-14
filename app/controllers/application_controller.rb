@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
         user.ensure_auth_token
         redirect_to root_path, notice: 'トークンの有効期限が切れました'
       else user == nil
+        user.ensure_auth_token
         redirect_to root_path, notice: 'ログインをお願いします'
       end
     end

@@ -75,7 +75,7 @@ gem 'typhoeus'
 gem 'dotenv-rails'
 
 # 定期実行
-gem 'whenever'
+# gem 'whenever'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

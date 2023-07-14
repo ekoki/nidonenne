@@ -21,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def deadline
-    return true if self.auth_token_created_at < 48.hours.ago
+    return true if self.auth_token_created_at > 48.hours.ago
   end
 
   # LINEから解答フォームを開く際に、トークンの有効期限を設定している。

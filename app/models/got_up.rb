@@ -16,6 +16,7 @@ class GotUp < ApplicationRecord
     end
   end
 
+  
   # https://qiita.com/Sugizou0215/items/0416c099bc03302e5a23
 
 end

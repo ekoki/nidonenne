@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_03_175937) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_24_144354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_175937) do
     t.text "answer", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["question"], name: "index_automatic_questions_on_question", unique: true
+    t.index ["answer"], name: "index_automatic_questions_on_answer", unique: true
   end
 
   create_table "got_ups", force: :cascade do |t|

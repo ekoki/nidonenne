@@ -18,7 +18,7 @@ class AnswerForm
     correct_count = 0
     correct_answers.each do |correct_answer|
       user_answers.each do |key, value|
-        if correct_answer.question == value
+        if correct_answer.answer == value
           correct_count += 1
         end
       end

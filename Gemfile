@@ -80,6 +80,8 @@ gem 'dotenv-rails'
 # seedファイルのためのgem
 gem 'seed-fu'
 
+# metaタグの設定
+gem 'meta-tags'
 
 
 group :development, :test do

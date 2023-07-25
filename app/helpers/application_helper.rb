@@ -34,7 +34,6 @@ module ApplicationHelper
       },
       twitter: {
         card: 'summary_large_image',
-        site: '@8ZlkNVp69e3wOCF',
         image: image_url('opg.png')
       }
     }

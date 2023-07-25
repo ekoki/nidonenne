@@ -6,10 +6,14 @@ ja:
     setting: '設定'
     answer: '解答'
   users:
+    new:
+      title: 'ユーザー登録'
     create:
       success: 'ユーザー登録が成功しました'
       fail: 'ユーザー登録に失敗しました'
   user_sessions:
+    new:
+      title: 'ログイン'
     create:
       success: 'ログインしました'
       fail: 'ログインに失敗しました'
@@ -25,22 +29,30 @@ ja:
       title: 'パスワードリセット申請'
       submit: '送信'
   notification_settings:
+    new:
+      title: '通知設定'
     create:
       success: '通知設定が完了しました'
       fail: '通知設定に失敗しました'
     destroy:
       success: '削除に成功しました'
   questions:
+    new:
+      title: '問題設定'
     create:
       success: '問題の登録が完了しました'
       fail: '問題の登録に失敗しました'
     bulk_destroy:
       success: '問題が削除されました。'
   answer_forms:
+    new:
+      title: '解答'
     create:
       success: '正解しました！'
       fail: '間違えています'
-  
+  schedules:
+    index: 
+      title: 'カレンダー'
 
 
 

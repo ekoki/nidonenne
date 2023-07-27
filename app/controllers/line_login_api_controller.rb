@@ -1,4 +1,5 @@
 class LineLoginApiController < ApplicationController
+  skip_before_action :require_login
 
   require 'json'
   require 'typhoeus'

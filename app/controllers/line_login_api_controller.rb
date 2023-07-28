@@ -30,7 +30,7 @@ class LineLoginApiController < ApplicationController
 
   def callback
     
-    binding.break
+    
     # CSRF対策のトークンが一致する場合のみ、ログイン処理を続ける
     if params[:state] == session[:state]
       

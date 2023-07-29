@@ -32,88 +32,35 @@ class LineLoginApiController < ApplicationController
   end
 
   def callback
-    
-    
-    # CSRF対策のトークンが一致する場合のみ、ログイン処理を続ける
-    if params[:state] == session[:state]
-      
+    if session[:state] == params[:state]
+      body = request.body.read
 
-      line_user_id = get_line_user_id(params[:code])
-      line_user = current_user.line_users.find_or_initialize_by(line_user_id: line_user_id)
-
-      if line_user.save
-        session[:user_id] = line_user.user.id
-        redirect_to schedules_index_path, notice: 'ログインしました'
-      else
-        redirect_to root_path, notice: 'ログインに失敗しました'
+      #LINEからリクエスト行に含められて送られる。下記により、本当にLINEからの通信であるかを確認している。
+      signature = request.env['HTTP_X_LINE_SIGNATURE']
+      unless client.validate_signature(body, signature)
+        head :bad_request and return
       end
 
-    else
-      redirect_to root_path, notice: '不正なアクセスです'
-    end
+      events = client.parse_events_from(body)
 
+      events.each { |event|
+        case event
+        when Line::Bot::Event::Follow
+          user_id = event['source']['userId']
+          LineUser.create(line_user_id: user_id, user_id: current_user.id)
+        end
+      }
+
+      head :ok
   end
 
   private
-
-  def get_line_user_id(code)
-
-    # ユーザーのIDトークンからプロフィール情報（ユーザーID）を取得する
-    # https://developers.line.biz/ja/docs/line-login/verify-id-token/
-
-    line_user_id_token = get_line_user_id_token(code)
-
-    if line_user_id_token.present?
-
-      url = 'https://api.line.me/oauth2/v2.1/verify'
-      options = {
-        body: {
-          id_token: line_user_id_token,
-          client_id: ENV["LINE_CHANNEL_ID"] # 本番環境では環境変数などに保管
-        }
-      }
-
-      response = Typhoeus::Request.post(url, options)
-
-      if response.code == 200
-        JSON.parse(response.body)['sub']
-      else
-        nil
-      end
-    
-    else
-      nil
-    end
-
-  end
-
-  def get_line_user_id_token(code)
-
-    # ユーザーのアクセストークン（IDトークン）を取得する
-    # https://developers.line.biz/ja/reference/line-login/#issue-access-token
-
-    url = 'https://api.line.me/oauth2/v2.1/token'
-    redirect_uri = line_login_api_callback_url
-
-    options = {
-      headers: {
-        'Content-Type' => 'application/x-www-form-urlencoded'
-      },
-      body: {
-        grant_type: 'authorization_code',
-        code: code,
-        redirect_uri: redirect_uri,
-        client_id: ENV["LINE_CHANNEL_ID"], # 本番環境では環境変数などに保管
-        client_secret: ENV["LINE_CHANNEL_SECRET"] # 本番環境では環境変数などに保管
-      }
+  
+  def client
+    @client ||= Line::Bot::Client.new { |config|
+      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     }
-    response = Typhoeus::Request.post(url, options)
-
-    if response.code == 200
-      JSON.parse(response.body)['id_token'] # ユーザー情報を含むJSONウェブトークン（JWT）
-    else
-      nil
-    end
   end
 
 end

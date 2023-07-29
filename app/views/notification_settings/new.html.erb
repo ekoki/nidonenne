@@ -1,5 +1,6 @@
+<% set_meta_tags title: t('.title') %>
 <div class="h-screen w-screen flex justify-center items-center bg-gray-100">
-  <div class="bg-white px-8 py-12 mt-16 rounded-3xl border-2">
+  <div class="bg-white px-20 py-12 mt-16 rounded-3xl border-2">
     <div class="text-center">
       <h2 class="text-3xl font-bold">通知設定</h2>
     </div>
@@ -7,18 +8,26 @@
       <%= form_with model: @notification_setting, url: notification_settings_path, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="mt-10">
-          <p>ユーザー名:</p>
+          <p>ユーザー名</p>
           <div class="w-full p-2 border border-black rounded-md">
             <%= current_user.name %>
           </div>
         </div>
         <div class="mt-5">
-          <%= f.label :send_time, NotificationSetting.human_attribute_name(:send_time) %>
-          <%= f.time_field :send_time, class: 'w-full p-2 border border-black rounded-md' %>
+          <div>
+            <%= f.label :send_time, NotificationSetting.human_attribute_name(:send_time) %>
+          </div>
+          <div class="w-full p-2 border border-black rounded-md">
+            <%= f.time_select :send_time %>
+          </div>
         </div>
         <div class="mt-5">
-          <%= f.label :notification_schedule, NotificationSetting.human_attribute_name(:notification_schedule) %>
-          <%= f.select :notification_schedule, {'設定しない': 'not_setting', '毎日': 'daily', '平日のみ': 'weekday', '土日のみ': 'weekend'}, { include_blank: ''}, class: 'w-full p-2 border border-black rounded-md' %>
+          <div>
+            <%= f.label :notification_schedule, NotificationSetting.human_attribute_name(:notification_schedule) %>
+          </div>
+          <div class="w-full p-2 border border-black rounded-md">
+            <%= f.select :notification_schedule, {'設定しない': 'not_setting', '毎日': 'daily', '平日のみ': 'weekday', '土日のみ': 'weekend'} %>
+          </div>
         </div>
         <div class="mt-2">
           <%= f.submit t('defaults.setting'), class: 'mt-1 btn btn-primary py-1 px-8' %>
@@ -27,11 +36,11 @@
     </div>
     <% if @delete_notification&.notification_schedule != nil && @delete_notification.notification_schedule != NotificationSetting.notification_schedules[:not_setting] %>
       <div class="mt-2 text-xs">
-        <p>設定済みの通知の解除は<%= link_to 'こちら', notification_setting_path(@delete_notification), data: { turbo: true, turbo_method: :delete, turbo_confirm: '削除しますか?' } %></p>
+        <p>設定済みの通知の解除は<%= link_to 'こちら', notification_setting_path(@delete_notification), data: { turbo: true, turbo_method: :delete, turbo_confirm: '削除しますか?' }, class: 'text-blue-500 underline' %></p>
       </div>
     <% end %>
     <div class="mt-2 text-xs">
-      <p>ラインのユーザー登録は<%= link_to 'こちら', line_login_api_new_path %></p>
+      <p>ラインのユーザー登録は<%= link_to 'こちら', line_login_api_new_path, class: 'text-blue-500 underline' %></p>
     </div>
   </div>
 </div>

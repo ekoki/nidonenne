@@ -75,7 +75,14 @@ gem 'typhoeus'
 gem 'dotenv-rails'
 
 # 定期実行
-gem 'whenever'
+# gem 'whenever'
+
+# seedファイルのためのgem
+gem 'seed-fu'
+
+# metaタグの設定
+gem 'meta-tags'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

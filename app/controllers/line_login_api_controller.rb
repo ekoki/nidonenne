@@ -1,4 +1,7 @@
 class LineLoginApiController < ApplicationController
+  skip_before_action :require_login
+  skip_before_action :verify_authenticity_token
+  protect_from_forgery :except => [:webhook]
 
   require 'json'
   require 'typhoeus'
@@ -9,8 +12,6 @@ class LineLoginApiController < ApplicationController
 
   def login
 
-    # CSRF対策用の固有な英数字の文字列
-    # ログインセッションごとにWebアプリでランダムに生成する
     session[:state] = SecureRandom.urlsafe_base64
     
     # ユーザーに認証と認可を要求する
@@ -19,20 +20,23 @@ class LineLoginApiController < ApplicationController
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
     client_id =  ENV["LINE_CHANNEL_ID"]
-    redirect_uri =  CGI.escape('https://glacial-dusk-80037-afde0a3307df.herokuapp.com/line_login_api/callback')
+    redirect_uri =  CGI.escape('https://www.nidonenne.com/line_login_api/callback')
     state = session[:state]
+    bot_prompt='aggressive'
     scope = 'profile%20openid' #ユーザーに付与を依頼する権限
 
-    authorization_url = "#{base_authorization_url}?response_type=#{response_type}&client_id=#{client_id}&redirect_uri=#{redirect_uri}&state=#{state}&scope=#{scope}"
-
+    authorization_url = "#{base_authorization_url}?response_type=#{response_type}&client_id=#{client_id}&redirect_uri=#{redirect_uri}&state=#{state}&bot_prompt=#{bot_prompt}&scope=#{scope}"
+    
     redirect_to authorization_url, allow_other_host: true
-
+    
   end
 
   def callback
     
+    
     # CSRF対策のトークンが一致する場合のみ、ログイン処理を続ける
     if params[:state] == session[:state]
+      
 
       line_user_id = get_line_user_id(params[:code])
       line_user = current_user.line_users.find_or_initialize_by(line_user_id: line_user_id)

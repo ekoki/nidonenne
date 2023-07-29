@@ -77,7 +77,6 @@ GEM
     bullet (7.0.7)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
-    chronic (0.10.2)
     concurrent-ruby (1.2.2)
     config (4.1.0)
       deep_merge (~> 1.2, >= 1.2.1)
@@ -168,6 +167,8 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
+    meta-tags (2.18.0)
+      actionpack (>= 3.2.0, < 7.1)
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.18.0)
@@ -279,6 +280,9 @@ GEM
       rubocop (>= 1.33.0, < 2.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    seed-fu (2.3.9)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
     sidekiq (7.0.7)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -323,8 +327,6 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    whenever (1.0.0)
-      chronic (>= 0.6.3)
     zeitwerk (2.6.7)
 
 PLATFORMS
@@ -343,6 +345,7 @@ DEPENDENCIES
   jsbundling-rails
   letter_opener_web
   line-bot-api
+  meta-tags
   pg
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
@@ -351,6 +354,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rails
+  seed-fu
   sidekiq
   simple_calendar (~> 2.4)
   sorcery
@@ -360,7 +364,6 @@ DEPENDENCIES
   typhoeus
   tzinfo-data
   web-console
-  whenever
 
 RUBY VERSION
    ruby 3.2.1p31

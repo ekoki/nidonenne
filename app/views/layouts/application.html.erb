@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ServiceName</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1FY0YMYES"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-J1FY0YMYES');
+    </script>
+    
+    <!-- metaタグをしようするため削除する -->
+    <%# <title>にどねんね</title> %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,7 +22,8 @@
     <%= javascript_importmap_tags %>
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet">
-
+    <!-- metaタグ -->
+    <%= display_meta_tags(default_meta_tags) %>
   </head>
 
   <body>

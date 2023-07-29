@@ -35,12 +35,6 @@ class LineLoginApiController < ApplicationController
     if session[:state] == params[:state]
       body = request.body.read
 
-      #LINEからリクエスト行に含められて送られる。下記により、本当にLINEからの通信であるかを確認している。
-      signature = request.env['HTTP_X_LINE_SIGNATURE']
-      unless client.validate_signature(body, signature)
-        head :bad_request and return
-      end
-
       events = client.parse_events_from(body)
 
       events.each { |event|
@@ -52,6 +46,7 @@ class LineLoginApiController < ApplicationController
       }
 
       head :ok
+      redirect_to schedules_index_path
     end
   end
 

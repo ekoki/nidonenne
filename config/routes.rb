@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get 'line_login_api/new', to: 'line_login_api#new'
   get 'line_login_api/login', to: 'line_login_api#login'
   get 'line_login_api/callback', to: 'line_login_api#callback'
+  post 'webhook', to: 'line_users#webhook'
 
   # スケジュール
   get 'schedules/index'

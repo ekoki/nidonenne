@@ -18,7 +18,7 @@ namespace :notification_schedule do
         end
       end
 
-      binding.break
+      
 
   end
 

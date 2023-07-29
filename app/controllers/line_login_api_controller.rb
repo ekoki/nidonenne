@@ -1,6 +1,8 @@
 class LineLoginApiController < ApplicationController
   skip_before_action :require_login
-  
+  skip_before_action :verify_authenticity_token
+  protect_from_forgery :except => [:webhook]
+
   require 'json'
   require 'typhoeus'
   require 'securerandom'
@@ -18,7 +20,7 @@ class LineLoginApiController < ApplicationController
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
     client_id =  ENV["LINE_CHANNEL_ID"]
-    redirect_uri =  CGI.escape('https://www.nidonenne.com/line_login_api/callback')
+    redirect_uri =  CGI.escape('https://1b2f-126-227-130-93.ngrok-free.app/line_login_api/callback')
     state = session[:state]
     scope = 'profile%20openid' #ユーザーに付与を依頼する権限
 

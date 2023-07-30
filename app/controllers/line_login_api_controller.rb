@@ -30,7 +30,12 @@ class LineLoginApiController < ApplicationController
 
   def callback
 
-    redirect_to schedules_index_path, notice: 'LINEログインに成功しました'
+    if session[:state] == params[:state]
+      redirect_to schedules_index_path, notice: 'LINEログインに成功しました'
+    else
+      logout
+      redirect_to schedules_index_path, notice: 'ログアウトしました'
+    end
 
   end
 

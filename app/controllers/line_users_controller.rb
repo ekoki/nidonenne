@@ -1,5 +1,6 @@
 class LineUsersController < ApplicationController
   skip_before_action :require_login
+  protect_from_forgery :except => [:create]
   require 'line/bot'  # gem 'line-bot-api'
   require 'json'
   require 'typhoeus'

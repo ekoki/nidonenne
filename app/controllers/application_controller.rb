@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
-  protect_from_forgery with: :exception
-
+  skip_forgery_protection
   # LINEから解答フォームを開く際に、自動でログインできるようにする。
   def login_with_token
     unless logged_in?

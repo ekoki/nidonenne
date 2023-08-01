@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-  skip_before_action :require_login, except: [:destroy]
+  # skip_before_action :require_login, except: [:destroy]
 
   def new;end
 
@@ -19,5 +19,6 @@ class UserSessionsController < ApplicationController
     logout
     redirect_to root_path, notice: t('.success'), status: :see_other
   end
+
 
 end

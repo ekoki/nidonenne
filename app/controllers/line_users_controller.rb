@@ -3,10 +3,11 @@ class LineUsersController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
   require 'json'
   require 'typhoeus'
+  
 
   def create
     # webhookアクションのCSRFトークン認証を無効
-    protect_from_forgery :except => [:webhook]
+    # protect_from_forgery :except => [:webhook]
     webhook
   end
 
@@ -23,8 +24,8 @@ class LineUsersController < ApplicationController
   def webhook
     # LINE公式アカウントを友だち追加したり、LINE公式アカウントにメッセージを送ったりすると、LINE Developersコンソールの［Webhook URL］で指定したURL（ボットサーバー）に対して、LINEプラットフォームからWebhookが送られる。
     body = request.body.read
-
-    #LINEからリクエスト行に含められて送られる。下記により、本当にLINEからの通信であるかを確認している。
+    
+    # LINEからリクエスト行に含められて送られる。下記により、本当にLINEからの通信であるかを確認している。
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       head :bad_request and return

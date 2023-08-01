@@ -45,5 +45,8 @@ module ServiceName
 
     # キューアダプターをsidekiqにする
     config.active_job.queue_adapter = :sidekiq
+
+    # CSRF対策
+    config.action_controller.default_protect_from_forgery = true
   end
 end

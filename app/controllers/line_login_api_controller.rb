@@ -16,7 +16,6 @@ class LineLoginApiController < ApplicationController
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
     client_id =  ENV["LINE_CHANNEL_ID"]
-    binding.break
     # redirect_uri =  CGI.escape('https://9171-126-227-130-93.ngrok-free.app/line_login_api/callback')
     redirect_url = CGI.escape(line_login_api_callback_url)
     state = session[:state]

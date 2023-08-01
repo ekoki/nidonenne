@@ -17,7 +17,7 @@ class LineLoginApiController < ApplicationController
     response_type = 'code'
     client_id =  ENV["LINE_CHANNEL_ID"]
     # redirect_uri =  CGI.escape('https://9171-126-227-130-93.ngrok-free.app/line_login_api/callback')
-    redirect_url = CGI.escape(line_login_api_callback_url)
+    redirect_uri = CGI.escape(line_login_api_callback_url)
     state = session[:state]
     bot_prompt='aggressive'
     scope = 'profile%20openid' #ユーザーに付与を依頼する権限

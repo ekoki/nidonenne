@@ -53,6 +53,9 @@ ja:
   schedules:
     index: 
       title: 'カレンダー'
+  line_users:
+    new:
+      title: '公式ライン友達追加'
 
 
 

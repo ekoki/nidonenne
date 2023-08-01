@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get 'line_login_api/new', to: 'line_login_api#new'
   get 'line_login_api/login', to: 'line_login_api#login'
   get 'line_login_api/callback', to: 'line_login_api#callback'
-  post 'line_users/create', to: 'line_users#create'
+  resources :line_users, only: %i[new create]
 
   # スケジュール
   get 'schedules/index'

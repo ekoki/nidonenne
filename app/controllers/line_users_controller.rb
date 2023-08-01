@@ -4,6 +4,7 @@ class LineUsersController < ApplicationController
   require 'json'
   require 'typhoeus'
   
+  def new;end
 
   def create
     # webhookアクションのCSRFトークン認証を無効

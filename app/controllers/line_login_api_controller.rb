@@ -16,7 +16,6 @@ class LineLoginApiController < ApplicationController
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
     client_id =  ENV["LINE_CHANNEL_ID"]
-    # redirect_uri =  CGI.escape('https://9171-126-227-130-93.ngrok-free.app/line_login_api/callback')
     redirect_uri = CGI.escape(line_login_api_callback_url)
     state = session[:state]
     bot_prompt='aggressive'
@@ -29,7 +28,7 @@ class LineLoginApiController < ApplicationController
 
   def callback
     if session[:state] == params[:state]
-      redirect_to schedules_index_path, notice: 'LINEログインに成功しました'
+      redirect_to new_line_user_path, notice: 'LINEログインに成功しました'
     else
       logout
       redirect_to login_path, notice: 'ログアウトしました'

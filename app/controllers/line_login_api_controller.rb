@@ -3,8 +3,7 @@ class LineLoginApiController < ApplicationController
   protect_from_forgery :except => [:callback]
   require 'securerandom'
 
-  def new
-  end
+  def new;end
 
   def login
 
@@ -16,6 +15,7 @@ class LineLoginApiController < ApplicationController
     base_authorization_url = 'https://access.line.me/oauth2/v2.1/authorize'
     response_type = 'code'
     client_id =  ENV["LINE_CHANNEL_ID"]
+    # URLヘルパーについて、urlなのかpathなのか。
     redirect_uri = CGI.escape(line_login_api_callback_url)
     state = session[:state]
     bot_prompt='aggressive'

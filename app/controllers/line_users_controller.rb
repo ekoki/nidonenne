@@ -79,18 +79,17 @@ class LineUsersController < ApplicationController
     request.content_type = "application/json"
     request["Authorization"] = "Bearer #{channel_access_token}"
     request.body = JSON.dump({
-      "to" => user_id,
-      "messages" => [{
-        "type" => "template",
-        "altText" => "Account Link",
-        "template" => {
-          "type" => "buttons",
-          "text" => "Account Link",
-          "actions" => [{
-            "type" => "uri",
-            "label" => "Account Link",
+      "to" : user_id,
+      "messages" : [{
+        "altText" : "Account Link",
+        "template" : {
+          "type" : "buttons",
+          "text" : "Account Link",
+          "actions" : [{
+            "type" : "uri",
+            "label" : "Account Link",
             # 3. 自社サービスのユーザーIDを取得するのURLを指定
-            "uri" => line_users_after_login_new_url(user_id: user_id, link_token: link_token)
+            "uri" : line_users_after_login_new_url(user_id: user_id, link_token: link_token)
           }]
         }
       }]

@@ -55,8 +55,10 @@ class LineUsersController < ApplicationController
 
   # 連携トークンを発行
   def create_link_token(user_id)
+    user_id = user_id.to_s
     channel_access_token = ENV["LINE_CHANNEL_TOKEN"]
     uri = URI.parse("https://api.line.me/v2/bot/user/#{user_id}/linkToken")
+    
     request = Net::HTTP::Post.new(uri)
     request["Authorization"] = "Bearer #{channel_access_token}"
     
@@ -67,7 +69,10 @@ class LineUsersController < ApplicationController
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-  
+
+    puts response.body
+    binding.break
+
     return JSON.parse(response.body)["linkToken"]
   end
 
@@ -79,17 +84,17 @@ class LineUsersController < ApplicationController
     request.content_type = "application/json"
     request["Authorization"] = "Bearer #{channel_access_token}"
     request.body = JSON.dump({
-      "to" : user_id,
-      "messages" : [{
-        "altText" : "Account Link",
-        "template" : {
-          "type" : "buttons",
-          "text" : "Account Link",
-          "actions" : [{
-            "type" : "uri",
-            "label" : "Account Link",
+      to: user_id.to_s,
+      messages: [{
+        altText: "Account Link",
+        template: {
+          type: "buttons",
+          text: "Account Link",
+          actions: [{
+            type: "uri",
+            label: "Account Link",
             # 3. 自社サービスのユーザーIDを取得するのURLを指定
-            "uri" : line_users_after_login_new_url(user_id: user_id, link_token: link_token)
+            uri: line_users_after_login_new_url(user_id: user_id, link_token: link_token)
           }]
         }
       }]

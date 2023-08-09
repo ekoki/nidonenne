@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get 'line_login_api/callback', to: 'line_login_api#callback'
   resources :line_users, only: %i[new create]
   post 'line_users/webhook', to: 'line_users#webhook'
-  get 'line_users/linkage', to: 'line_users#linkage'
+  get 'line_users/line_linkage', to: 'line_users#line_linkage'
   get 'line_users/after_login_new', to: 'line_users#after_login_new'
   post 'line_users/after_login', to: 'line_users#after_login'
   get 'line_users/generate_nonce', to: 'line_users#generate_nonce'

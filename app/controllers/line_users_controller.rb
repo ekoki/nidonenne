@@ -12,6 +12,7 @@ class LineUsersController < ApplicationController
     user_id = current_user.id
     link_token = create_link_token(user_id)
     send_link_message(user_id, link_token)
+    render plain: "Success", status: 200
   end
 
   def after_login
@@ -44,7 +45,6 @@ class LineUsersController < ApplicationController
       case event
       when Line::Bot::Event::AccountLink
         handle_account_link(event)
-      # 他のイベントタイプに対する処理は省略
       end
     }
 
@@ -53,7 +53,7 @@ class LineUsersController < ApplicationController
 
   private
 
-  # 1. 連携トークンを発行する
+  # 連携トークンを発行
   def create_link_token(user_id)
     channel_access_token = ENV["LINE_CHANNEL_TOKEN"]
     uri = URI.parse("https://api.line.me/v2/bot/user/#{user_id}/linkToken")
@@ -71,7 +71,7 @@ class LineUsersController < ApplicationController
     return JSON.parse(response.body)["linkToken"]
   end
 
-  # 2. ユーザーを連携URLにリダイレクトする
+  # ユーザーを連携URLにリダイレクト
   def send_link_message(user_id, link_token)
     channel_access_token = ENV["LINE_CHANNEL_TOKEN"]
     uri = URI.parse("https://api.line.me/v2/bot/message/push")

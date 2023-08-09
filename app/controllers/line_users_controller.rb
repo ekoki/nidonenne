@@ -8,48 +8,64 @@ class LineUsersController < ApplicationController
   require 'securerandom'
 
   # https://developers.line.biz/ja/docs/messaging-api/linking-accounts/#step-four-verifying-user-id
-  def line_linkage
-    user_id = current_user.id
-    link_token = create_link_token(user_id)
-    send_link_message(user_id, link_token)
-    render plain: "Success", status: 200
-  end
+  # def line_linkage
+  #   user_id = current_user.id
+  #   link_token = create_link_token(user_id)
+  #   send_link_message(user_id, link_token)
+  #   render plain: "Success", status: 200
+  # end
 
-  def after_login
-    @user = login(params[:email], params[:password])
-    if @user
-      redirect_to line_users_generate_nonce_path
-    else
-      flash.now[:alert] = t('.fail')
-      render :new, status: :unprocessable_entity
-    end
-  end
+  # def after_login
+  #   @user = login(params[:email], params[:password])
+  #   if @user
+  #     redirect_to line_users_generate_nonce_path
+  #   else
+  #     flash.now[:alert] = t('.fail')
+  #     render :new, status: :unprocessable_entity
+  #   end
+  # end
 
-  def generate_nonce(user_id, link_token)
-    nonce = SecureRandom.urlsafe_base64(16)
-    Nonce.create!(nonce: nonce, user_id: user_id)
-    redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{link_token}&nonce=#{nonce}"
-  end
+  # def generate_nonce(user_id, link_token)
+  #   nonce = SecureRandom.urlsafe_base64(16)
+  #   Nonce.create!(nonce: nonce, user_id: user_id)
+  #   redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{link_token}&nonce=#{nonce}"
+  # end
 
   def webhook
-    # LINEからのリクエストの署名を検証する
-    unless client.validate_signature(request.body.read, request.env['HTTP_X_LINE_SIGNATURE'])
-      return head :bad_request
+    #JSON形式のデータからデータを取得する。
+    body = request.body.read
+    events = JSON.parse(body)["events"]
+
+    events.each do |event|
+      if event["type"] == "follow"
+        user_id = event["source"]["userId"]
+        current_user.line_users.create(line_user_id: user_id)
+      end 
     end
 
-    # リクエストの内容（イベント）をパースする
-    events = client.parse_events_from(request.env['HTTP_X_LINE_SIGNATURE'])
-
-    # 全てのイベントを処理する
-    events.each { |event|
-      case event
-      when Line::Bot::Event::AccountLink
-        handle_account_link(event)
-      end
-    }
-
+    # HTTPステータスコード200のレスポンスを送る。ビューについては表示されない。
     head :ok
-  end
+
+
+
+    # LINEからのリクエストの署名を検証する
+  #   unless client.validate_signature(request.body.read, request.env['HTTP_X_LINE_SIGNATURE'])
+  #     return head :bad_request
+  #   end
+
+  #   # リクエストの内容（イベント）をパースする
+  #   events = client.parse_events_from(request.env['HTTP_X_LINE_SIGNATURE'])
+
+  #   # 全てのイベントを処理する
+  #   events.each { |event|
+  #     case event
+  #     when Line::Bot::Event::AccountLink
+  #       handle_account_link(event)
+  #     end
+  #   }
+
+  #   head :ok
+  # end
 
   private
 

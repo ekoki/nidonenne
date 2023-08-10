@@ -14,6 +14,7 @@
           <%= f.label :password, User.human_attribute_name(:password) %>
           <%= f.password_field :password, class: 'w-full p-2 border border-black rounded-md' %>
         </div>
+        <%= f.hidden_field :link_token, value: '@link_token' %> 
         <div>
           <%= f.submit t('defaults.login'), class: 'mt-1.5 btn btn-primary py-1 px-8' %>
         </div>

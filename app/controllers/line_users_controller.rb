@@ -38,7 +38,7 @@ class LineUsersController < ApplicationController
     Nonce.create!(user_id: user_id, nonce: nonce)
 
     link_token = params[:link_token]
-    redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{link_token}&nonce=#{nonce}"
+    redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{link_token}&nonce=#{nonce}", allow_other_host: true
   end
 
   private

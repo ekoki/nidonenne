@@ -129,10 +129,10 @@ class LineUsersController < ApplicationController
     result = event['link']['result'] # "ok" または "failed"
     nonce = event['link']['nonce']   # アカウント連携時に生成されたnonce
     line_user_id = event['source']['userId']
+    user = Nonce.find_by(nonce: nonce)
 
     # resultが"ok"の場合、ユーザーのアカウント連携が成功しています。
     if result == "ok"
-      user = Nonce.find_by(nonce: nonce)
       LineUser.create!(user_id: user.user_id, line_user_id: line_user_id)
     end
   end

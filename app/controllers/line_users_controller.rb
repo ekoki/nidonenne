@@ -36,7 +36,7 @@ class LineUsersController < ApplicationController
     user_id = current_user.id
     nonce = SecureRandom.base64(16)
     
-    ここでnonceとuser_idを保存。
+    # ここでnonceとuser_idを保存。
     Nonce.create!(user_id: user_id, nonce: nonce)
     link_token = params[:link_token]
     redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{link_token}&nonce=#{nonce}", allow_other_host: true

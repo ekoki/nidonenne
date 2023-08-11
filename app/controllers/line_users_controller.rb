@@ -54,7 +54,7 @@ class LineUsersController < ApplicationController
     end
 
     events = client.parse_events_from(body)
-    binding.break
+  
     events.each { |event|
       case event
       when Line::Bot::Event::Follow

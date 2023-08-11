@@ -17,7 +17,7 @@ class LineUsersController < ApplicationController
   end
 
   def after_login_new
-    @link_token = params[:link_token]
+    @link_token = params[:link_token] 
   end
 
   def after_login
@@ -31,12 +31,12 @@ class LineUsersController < ApplicationController
   end
 
   def generate_nonce
+    binding.break
     user_id = current_user.id
     nonce = SecureRandom.base64(16)
     
     # ここでnonceとuser_idを保存。
     Nonce.create!(user_id: user_id, nonce: nonce)
-
     link_token = params[:link_token]
     redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{link_token}&nonce=#{nonce}", allow_other_host: true
   end

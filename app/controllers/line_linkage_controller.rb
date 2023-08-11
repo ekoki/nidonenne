@@ -6,7 +6,6 @@ class LineLinkageController < ApplicationController
   def get_token
     user_id = params[:user_id]
     link_token = create_link_token(user_id)
-    binding.break
     send_link_message(user_id, link_token)
     render plain: "Success", status: 200
   end

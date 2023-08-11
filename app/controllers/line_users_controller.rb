@@ -31,7 +31,6 @@ class LineUsersController < ApplicationController
   end
 
   def generate_nonce
-    binding.break
     user_id = current_user.id
     nonce = SecureRandom.base64(16)
     

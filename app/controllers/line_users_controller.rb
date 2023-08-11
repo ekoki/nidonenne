@@ -11,8 +11,10 @@ class LineUsersController < ApplicationController
 
   def line_linkage
     line_user_id = webhook
-    link_token = create_link_token(line_user_id)
-    send_link_message(line_user_id, link_token)
+      if line_user_id
+        link_token = create_link_token(line_user_id)
+        send_link_message(line_user_id, link_token)
+      end
     render plain: "Success", status: 200
   end
 
@@ -34,7 +36,7 @@ class LineUsersController < ApplicationController
     user_id = current_user.id
     nonce = SecureRandom.base64(16)
     
-    # ここでnonceとuser_idを保存。
+    ここでnonceとuser_idを保存。
     Nonce.create!(user_id: user_id, nonce: nonce)
     link_token = params[:link_token]
     redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{link_token}&nonce=#{nonce}", allow_other_host: true
@@ -117,7 +119,6 @@ class LineUsersController < ApplicationController
       }]
     })
 
-    # リクエストを実行
     response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
       http.request(request)
     end
@@ -127,14 +128,12 @@ class LineUsersController < ApplicationController
   def handle_account_link(event)
     result = event['link']['result'] # "ok" または "failed"
     nonce = event['link']['nonce']   # アカウント連携時に生成されたnonce
-    line_user_id = event['link']['userId']
+    line_user_id = event['source']['userId']
 
     # resultが"ok"の場合、ユーザーのアカウント連携が成功しています。
     if result == "ok"
       user = Nonce.find_by(nonce: nonce)
       LineUser.create!(user_id: user.id, line_user_id: line_user_id)
-    else
-      redirect_to root_path, notice: 'アカウント連携に失敗しました'
     end
   end
 

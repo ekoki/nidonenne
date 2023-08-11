@@ -54,7 +54,7 @@ class LineUsersController < ApplicationController
     end
 
     events = client.parse_events_from(body)
-
+    binding.break
     events.each { |event|
       case event
       when Line::Bot::Event::Follow
@@ -133,7 +133,7 @@ class LineUsersController < ApplicationController
     # resultが"ok"の場合、ユーザーのアカウント連携が成功しています。
     if result == "ok"
       user = Nonce.find_by(nonce: nonce)
-      LineUser.create!(user_id: user.id, line_user_id: line_user_id)
+      LineUser.create!(user_id: user.user_id, line_user_id: line_user_id)
     end
   end
 

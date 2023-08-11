@@ -20,4 +20,5 @@ class UserSessionsController < ApplicationController
     redirect_to root_path, notice: t('.success'), status: :see_other
   end
 
+
 end

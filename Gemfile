@@ -90,6 +90,7 @@ group :development, :test do
   gem "rspec-rails"
   # Mail
   gem 'letter_opener_web'
+
 end
 
 group :development do
@@ -98,7 +99,9 @@ group :development do
   gem "rubocop"
   gem "rubocop-rails"
   gem "bullet"
-
+  # エラー解決のためのgem
+  gem 'better_errors'
+  gem 'binding_of_caller'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

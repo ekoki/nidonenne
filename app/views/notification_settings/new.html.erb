@@ -4,10 +4,15 @@
     <div class="text-center">
       <h2 class="text-3xl font-bold">通知設定</h2>
     </div>
+    <div class="mt-2 text-red-400">
+      <% if @set_notification_setting %>
+        <p><%= @set_notification_setting.send_time.strftime('%-H時%-M分') %>に通知します</p>
+      <% end %>
+    </div>
     <div class="text-2xl">
       <%= form_with model: @notification_setting, url: notification_settings_path, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-        <div class="mt-10">
+        <div class="mt-2">
           <p>ユーザー名</p>
           <div class="w-full p-2 border border-black rounded-md">
             <%= current_user.name %>

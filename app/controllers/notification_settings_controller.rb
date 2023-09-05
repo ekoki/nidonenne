@@ -2,6 +2,7 @@ class NotificationSettingsController < ApplicationController
   def new
     @notification_setting = NotificationSetting.new
     @delete_notification = NotificationSetting.find_by(user_id: current_user.id)
+    @set_notification_setting = current_user.notification_settings.first
   end
 
   def create

@@ -56,6 +56,8 @@ ja:
   line_users:
     new:
       title: '公式ライン友達追加'
+    after_login:
+      success: 'ログインしました'
 
 
 

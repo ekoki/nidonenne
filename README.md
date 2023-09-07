@@ -44,4 +44,4 @@ https://www.figma.com/file/Jfx0llfG7TVhXcevYjxUjV/PF%E7%94%BB%E9%9D%A2%E9%81%B7%
 
 ## ER図
 
-![image](https://github.com/ekoki/nidonenne/assets/78673091/e61c7123-6cf4-4f0b-82fa-97a9e1274538)
+![image](https://github.com/ekoki/nidonenne/assets/78673091/2d864108-476d-46f7-bfd9-99249dc370fe)

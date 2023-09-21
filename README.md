@@ -34,9 +34,22 @@
 
 ## 技術選定
 
+**バックエンド**
 - Ruby on Rails
 
+**フロントエンド**
 - jQuery
+- TailwindCSS
+- daisyUI
+
+**外部API**
+- LINE Messaging API
+
+**インフラ等**
+- Sidekiq
+- Redis
+- Heroku
+
 
 ## 画面遷移図
 
